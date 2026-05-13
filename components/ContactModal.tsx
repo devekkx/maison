@@ -6,6 +6,20 @@ import { submitContact, type ContactFormState } from "@/app/actions/contact";
 
 const INITIAL_STATE: ContactFormState = { status: "idle" };
 
+type FieldDef =
+  | { kind: "input"; name: string; id: string; label: string; type?: string; placeholder?: string; autoComplete?: string; required?: boolean; className?: string }
+  | { kind: "select"; name: string; id: string; label: string; className?: string }
+  | { kind: "textarea"; name: string; id: string; label: string; placeholder?: string; className?: string };
+
+const FIELDS: FieldDef[] = [
+  { kind: "input", name: "name", id: "m-name", label: "Full name", placeholder: "Imani A.", autoComplete: "name", required: true },
+  { kind: "input", name: "email", id: "m-email", label: "Email", type: "email", placeholder: "you@example.com", autoComplete: "email", required: true },
+  { kind: "input", name: "phone", id: "m-phone", label: "Phone", placeholder: "+1 (—) — —", autoComplete: "tel" },
+  { kind: "input", name: "date", id: "m-date", label: "Preferred date", type: "date" },
+  { kind: "select", name: "service", id: "m-service", label: "Service", className: "full" },
+  { kind: "textarea", name: "notes", id: "m-notes", label: "Notes (hair length, references, anything I should know)", placeholder: "Currently shoulder-length, last colored in February…", className: "full" },
+];
+
 export default function ContactModal() {
   const [open, setOpen] = useState(false);
   const [servicePreset, setServicePreset] = useState("");
@@ -28,56 +42,34 @@ export default function ContactModal() {
     };
   }, []);
 
-  const errors =
-    state.status === "error" ? state.errors : ({} as Record<string, string>);
+  const errors = state.status === "error" ? state.errors : ({} as Record<string, string>);
 
   return (
     <div
       className={`modal-scrim ${open ? "open" : ""}`}
       onClick={(e) => {
-        if ((e.target as HTMLElement).classList.contains("modal-scrim"))
-          setOpen(false);
+        if ((e.target as HTMLElement).classList.contains("modal-scrim")) setOpen(false);
       }}
       role="presentation"
     >
-      <div
-        className="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Reserve a chair"
-      >
-        <button
-          type="button"
-          className="modal-close"
-          onClick={() => setOpen(false)}
-          aria-label="Close"
-        >
+      <div className="modal" role="dialog" aria-modal="true" aria-label="Reserve a chair">
+        <button type="button" className="modal-close" onClick={() => setOpen(false)} aria-label="Close">
           ×
         </button>
 
         <aside className="modal-aside">
-          <div className="eyebrow eyebrow-warm">
-            Maison Noire · Reservations
-          </div>
+          <div className="eyebrow eyebrow-warm">Maison Noire · Reservations</div>
           <div>
-            <h3>
-              Reserve a <em>chair.</em>
-            </h3>
+            <h3>Reserve a <em>chair.</em></h3>
             <p>
               Tell me a little about what you&apos;d like done. I&apos;ll write
               back within 24 hours with two or three time options that fit.
             </p>
           </div>
           <div className="meta">
-            <div>
-              Stylist <span>Amara Osei</span>
-            </div>
-            <div>
-              Studio <span>217 Franklin St · Brooklyn</span>
-            </div>
-            <div>
-              Hours <span>Tue–Sat · 10:00–20:00</span>
-            </div>
+            <div>Stylist <span>Amara Osei</span></div>
+            <div>Studio <span>217 Franklin St · Brooklyn</span></div>
+            <div>Hours <span>Tue–Sat · 10:00–20:00</span></div>
           </div>
         </aside>
 
@@ -85,9 +77,7 @@ export default function ContactModal() {
           {state.status === "success" ? (
             <div className="confirm">
               <div className="seal">✓</div>
-              <h4>
-                Thank <em>you.</em>
-              </h4>
+              <h4>Thank <em>you.</em></h4>
               <p>
                 Your request is in. I&apos;ll be in touch at{" "}
                 <strong className="confirm-email">{state.email}</strong> within
@@ -100,12 +90,8 @@ export default function ContactModal() {
           ) : (
             <form action={action} className="contact-form">
               <div>
-                <div className="eyebrow eyebrow-warm">
-                  Booking request — N° 01
-                </div>
-                <h4>
-                  A few <em>details.</em>
-                </h4>
+                <div className="eyebrow eyebrow-warm">Booking request — N° 01</div>
+                <h4>A few <em>details.</em></h4>
               </div>
 
               {state.status === "failure" && (
@@ -113,85 +99,52 @@ export default function ContactModal() {
               )}
 
               <div className="form-grid">
-                <div className="field">
-                  <label htmlFor="m-name">Full name</label>
-                  <input
-                    id="m-name"
-                    name="name"
-                    required
-                    placeholder="Imani A."
-                    autoComplete="name"
-                  />
-                  {errors.name && (
-                    <span className="field-error">{errors.name}</span>
-                  )}
-                </div>
+                {FIELDS.map((field) => (
+                  <div key={field.name} className={`field${field.className ? ` ${field.className}` : ""}`}>
+                    <label htmlFor={field.id}>{field.label}</label>
 
-                <div className="field">
-                  <label htmlFor="m-email">Email</label>
-                  <input
-                    id="m-email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="you@example.com"
-                    autoComplete="email"
-                  />
-                  {errors.email && (
-                    <span className="field-error">{errors.email}</span>
-                  )}
-                </div>
+                    {field.kind === "input" && (
+                      <input
+                        id={field.id}
+                        name={field.name}
+                        type={field.type}
+                        placeholder={field.placeholder}
+                        autoComplete={field.autoComplete}
+                        required={field.required}
+                      />
+                    )}
 
-                <div className="field">
-                  <label htmlFor="m-phone">Phone</label>
-                  <input
-                    id="m-phone"
-                    name="phone"
-                    placeholder="+1 (—) — —"
-                    autoComplete="tel"
-                  />
-                </div>
+                    {field.kind === "select" && (
+                      <select
+                        id={field.id}
+                        name={field.name}
+                        defaultValue={servicePreset || `${SERVICES[0].name} ${SERVICES[0].italic}`}
+                      >
+                        {SERVICES.map((s) => (
+                          <option key={s.id}>{s.name} {s.italic}</option>
+                        ))}
+                        <option>Not sure — I&apos;d like a consultation</option>
+                      </select>
+                    )}
 
-                <div className="field">
-                  <label htmlFor="m-date">Preferred date</label>
-                  <input id="m-date" name="date" type="date" />
-                </div>
+                    {field.kind === "textarea" && (
+                      <textarea
+                        id={field.id}
+                        name={field.name}
+                        placeholder={field.placeholder}
+                      />
+                    )}
 
-                <div className="field full">
-                  <label htmlFor="m-service">Service</label>
-                  <select
-                    id="m-service"
-                    name="service"
-                    defaultValue={servicePreset || SERVICES[0].name + " " + SERVICES[0].italic}
-                  >
-                    {SERVICES.map((s) => (
-                      <option key={s.id}>
-                        {s.name} {s.italic}
-                      </option>
-                    ))}
-                    <option>Not sure — I&apos;d like a consultation</option>
-                  </select>
-                </div>
-
-                <div className="field full">
-                  <label htmlFor="m-notes">
-                    Notes (hair length, references, anything I should know)
-                  </label>
-                  <textarea
-                    id="m-notes"
-                    name="notes"
-                    placeholder="Currently shoulder-length, last colored in February…"
-                  />
-                </div>
+                    {errors[field.name] && (
+                      <span className="field-error">{errors[field.name]}</span>
+                    )}
+                  </div>
+                ))}
               </div>
 
               <div className="form-actions">
                 <small>I&apos;ll respond within 24 hours · personally</small>
-                <button
-                  type="submit"
-                  className="btn primary"
-                  disabled={pending}
-                >
+                <button type="submit" className="btn primary" disabled={pending}>
                   {pending ? "Sending…" : "Send request →"}
                 </button>
               </div>
