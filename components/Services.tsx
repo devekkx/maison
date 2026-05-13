@@ -2,6 +2,7 @@
 
 import { SERVICES } from "@/lib/data";
 import { openContact } from "@/lib/contact";
+import { Button } from "@/components/ui/button";
 
 export default function Services() {
   return (

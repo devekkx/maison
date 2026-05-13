@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { HERO_SLIDES, STAR } from "@/lib/data";
 import { openContact } from "@/lib/contact";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   const [slide, setSlide] = useState(0);
@@ -83,9 +84,9 @@ export default function Hero() {
           <span className="label">Hours</span>
           <span className="value">Tue–Sat · 10–20</span>
         </div>
-        <button className="book" onClick={() => openContact()}>
+        <Button className="book" onClick={() => openContact()}>
           Reserve a chair <span>→</span>
-        </button>
+        </Button>
       </aside>
 
       <div className="hero-foot">

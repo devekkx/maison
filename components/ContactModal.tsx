@@ -3,13 +3,56 @@
 import { useState, useEffect, useActionState } from "react";
 import { SERVICES } from "@/lib/data";
 import { submitContact, type ContactFormState } from "@/app/actions/contact";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const INITIAL_STATE: ContactFormState = { status: "idle" };
 
-type FieldDef =
-  | { kind: "input"; name: string; id: string; label: string; type?: string; placeholder?: string; autoComplete?: string; required?: boolean; className?: string }
-  | { kind: "select"; name: string; id: string; label: string; className?: string }
-  | { kind: "textarea"; name: string; id: string; label: string; placeholder?: string; className?: string };
+type InputFieldDef = {
+  kind: "input";
+  name: string;
+  id: string;
+  label: string;
+  type?: string;
+  placeholder?: string;
+  autoComplete?: string;
+  required?: boolean;
+  className?: string;
+};
+
+type SelectFieldDef = {
+  kind: "select";
+  name: string;
+  id: string;
+  label: string;
+  className?: string;
+};
+
+type TextareaFieldDef = {
+  kind: "textarea";
+  name: string;
+  id: string;
+  label: string;
+  placeholder?: string;
+  className?: string;
+};
+
+type FieldDef = InputFieldDef | SelectFieldDef | TextareaFieldDef;
 
 const FIELDS: FieldDef[] = [
   { kind: "input", name: "name", id: "m-name", label: "Full name", placeholder: "Imani A.", autoComplete: "name", required: true },
@@ -23,39 +66,30 @@ const FIELDS: FieldDef[] = [
 export default function ContactModal() {
   const [open, setOpen] = useState(false);
   const [servicePreset, setServicePreset] = useState("");
+  const [selectValue, setSelectValue] = useState("");
   const [state, action, pending] = useActionState(submitContact, INITIAL_STATE);
 
   useEffect(() => {
     const onOpen = (e: Event) => {
       const detail = (e as CustomEvent<{ service?: string }>).detail;
-      setServicePreset(detail?.service ?? "");
+      const preset = detail?.service ?? "";
+      setServicePreset(preset);
+      setSelectValue(preset || `${SERVICES[0].name} ${SERVICES[0].italic}`);
       setOpen(true);
     };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
     window.addEventListener("open-contact", onOpen);
-    window.addEventListener("keydown", onKey);
-    return () => {
-      window.removeEventListener("open-contact", onOpen);
-      window.removeEventListener("keydown", onKey);
-    };
+    return () => window.removeEventListener("open-contact", onOpen);
   }, []);
 
   const errors = state.status === "error" ? state.errors : ({} as Record<string, string>);
 
   return (
-    <div
-      className={`modal-scrim ${open ? "open" : ""}`}
-      onClick={(e) => {
-        if ((e.target as HTMLElement).classList.contains("modal-scrim")) setOpen(false);
-      }}
-      role="presentation"
-    >
-      <div className="modal" role="dialog" aria-modal="true" aria-label="Reserve a chair">
-        <button type="button" className="modal-close" onClick={() => setOpen(false)} aria-label="Close">
-          ×
-        </button>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogContent className="modal" aria-describedby="modal-desc">
+        <DialogTitle className="sr-only">Reserve a chair</DialogTitle>
+        <DialogDescription id="modal-desc" className="sr-only">
+          Fill in your details and we&apos;ll confirm a time within 24 hours.
+        </DialogDescription>
 
         <aside className="modal-aside">
           <div className="eyebrow eyebrow-warm">Maison Noire · Reservations</div>
@@ -69,7 +103,7 @@ export default function ContactModal() {
           <div className="meta">
             <div>Stylist <span>Amara Osei</span></div>
             <div>Studio <span>217 Franklin St · Brooklyn</span></div>
-            <div>Hours <span>Tue–Sat · 10:00–20:00</span></div>
+            <div>Hours <span>Tue-Sat · 10:00-20:00</span></div>
           </div>
         </aside>
 
@@ -83,9 +117,9 @@ export default function ContactModal() {
                 <strong className="confirm-email">{state.email}</strong> within
                 24 hours with a time and a confirmation.
               </p>
-              <button type="button" className="btn" onClick={() => setOpen(false)}>
+              <Button variant="outline" className="btn" onClick={() => setOpen(false)}>
                 Close
-              </button>
+              </Button>
             </div>
           ) : (
             <form action={action} className="contact-form">
@@ -101,10 +135,10 @@ export default function ContactModal() {
               <div className="form-grid">
                 {FIELDS.map((field) => (
                   <div key={field.name} className={`field${field.className ? ` ${field.className}` : ""}`}>
-                    <label htmlFor={field.id}>{field.label}</label>
+                    <Label htmlFor={field.id}>{field.label}</Label>
 
                     {field.kind === "input" && (
-                      <input
+                      <Input
                         id={field.id}
                         name={field.name}
                         type={field.type}
@@ -115,20 +149,32 @@ export default function ContactModal() {
                     )}
 
                     {field.kind === "select" && (
-                      <select
-                        id={field.id}
-                        name={field.name}
-                        defaultValue={servicePreset || `${SERVICES[0].name} ${SERVICES[0].italic}`}
-                      >
-                        {SERVICES.map((s) => (
-                          <option key={s.id}>{s.name} {s.italic}</option>
-                        ))}
-                        <option>Not sure, I&apos;d like a consultation</option>
-                      </select>
+                      <>
+                        <input type="hidden" name={field.name} value={selectValue} />
+                        <Select
+                          value={selectValue}
+                          onValueChange={setSelectValue}
+                          defaultValue={servicePreset || `${SERVICES[0].name} ${SERVICES[0].italic}`}
+                        >
+                          <SelectTrigger id={field.id}>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {SERVICES.map((s) => (
+                              <SelectItem key={s.id} value={`${s.name} ${s.italic}`}>
+                                {s.name} {s.italic}
+                              </SelectItem>
+                            ))}
+                            <SelectItem value="Not sure, I'd like a consultation">
+                              Not sure, I&apos;d like a consultation
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </>
                     )}
 
                     {field.kind === "textarea" && (
-                      <textarea
+                      <Textarea
                         id={field.id}
                         name={field.name}
                         placeholder={field.placeholder}
@@ -144,14 +190,14 @@ export default function ContactModal() {
 
               <div className="form-actions">
                 <small>I&apos;ll respond within 24 hours · personally</small>
-                <button type="submit" className="btn primary" disabled={pending}>
+                <Button type="submit" className="btn primary" disabled={pending}>
                   {pending ? "Sending…" : "Send request →"}
-                </button>
+                </Button>
               </div>
             </form>
           )}
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

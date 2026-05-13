@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { openContact } from "@/lib/contact";
+import { Button } from "@/components/ui/button";
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,18 +38,20 @@ export default function Nav() {
         </ul>
 
         <div className="nav-right">
-          <button
+          <Button
             type="button"
+            variant="outline"
             className="cta"
             onClick={() => openContact()}
             aria-label="Book a chair"
           >
             Book a chair
-          </button>
+          </Button>
 
           {/* Hamburger (mobile only) */}
-          <button
+          <Button
             type="button"
+            variant="ghost"
             className={`hamburger${menuOpen ? " open" : ""}`}
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -57,7 +60,7 @@ export default function Nav() {
             <span />
             <span />
             <span />
-          </button>
+          </Button>
         </div>
       </nav>
 
@@ -71,13 +74,14 @@ export default function Nav() {
           <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
           <a href="#artists" onClick={() => setMenuOpen(false)}>Artists</a>
           <a href="#gallery" onClick={() => setMenuOpen(false)}>Gallery</a>
-          <button
+          <Button
             type="button"
+            variant="secondary"
             className="mobile-menu-book"
             onClick={() => { setMenuOpen(false); openContact(); }}
           >
             Book a chair →
-          </button>
+          </Button>
         </nav>
       </div>
     </>
