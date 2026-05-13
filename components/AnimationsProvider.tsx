@@ -18,7 +18,7 @@ export default function AnimationsProvider({
 }) {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 0.6,
+      duration: 0.85,
       easing: (t: number) => 1 - Math.pow(1 - t, 3),
       smoothWheel: true,
       wheelMultiplier: 1.1,
@@ -59,15 +59,15 @@ export default function AnimationsProvider({
       gsap.set(introEyebrow, { opacity: 0, y: 20 });
       gsap.set(introCue, { opacity: 0, y: 20 });
 
-      const introIn = gsap.timeline({ delay: 0.1 });
+      const introIn = gsap.timeline({ delay: 0.25 });
       introIn
-        .to(introEyebrow, { opacity: 1, y: 0, duration: 0.65, ease }, 0)
+        .to(introEyebrow, { opacity: 1, y: 0, duration: 1.0, ease }, 0)
         .to(
           introLines,
-          { yPercent: 0, rotateX: 0, opacity: 1, duration: 0.95, ease: "expo.out", stagger: 0.1 },
-          0.1
+          { yPercent: 0, rotateX: 0, opacity: 1, duration: 1.4, ease: "expo.out", stagger: 0.15 },
+          0.15
         )
-        .to(introCue, { opacity: 1, y: 0, duration: 0.65, ease }, 0.75);
+        .to(introCue, { opacity: 1, y: 0, duration: 1.0, ease }, 1.1);
 
       gsap
         .timeline({
@@ -116,12 +116,12 @@ export default function AnimationsProvider({
     gsap.utils.toArray<HTMLElement>("[data-reveal-y]").forEach((el) => {
       gsap.fromTo(
         el,
-        { opacity: 0, y: 36, rotateX: 14, transformPerspective: 1200, transformOrigin: "50% 100%" },
+        { opacity: 0, y: 50, rotateX: 18, transformPerspective: 1200, transformOrigin: "50% 100%" },
         {
           opacity: 1,
           y: 0,
           rotateX: 0,
-          duration: 0.75,
+          duration: 1.1,
           ease,
           scrollTrigger: { trigger: el, start: "top 88%", toggleActions: "play none none none" },
         }
@@ -180,10 +180,10 @@ export default function AnimationsProvider({
     gsap.utils.toArray<HTMLElement>("[data-svc-row]").forEach((row) => {
       gsap.fromTo(
         row,
-        { opacity: 0, y: 50, rotateX: -20, rotateY: -6, transformPerspective: 1400, transformOrigin: "50% 0%" },
+        { opacity: 0, y: 80, rotateX: -25, rotateY: -8, transformPerspective: 1400, transformOrigin: "50% 0%" },
         {
           opacity: 1, y: 0, rotateX: 0, rotateY: 0,
-          duration: 0.75, ease: "power4.out",
+          duration: 1.1, ease: "power4.out",
           scrollTrigger: { trigger: row, start: "top 88%" },
         }
       );
@@ -196,7 +196,7 @@ export default function AnimationsProvider({
       gsap.set(cards, { transformPerspective: 1600, transformStyle: "preserve-3d" });
 
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: ownerStage, start: "top 75%", end: "top 25%", scrub: 0.6 },
+        scrollTrigger: { trigger: ownerStage, start: "top 75%", end: "top 25%", scrub: 1 },
       });
       if (cards[0])
         tl.fromTo(cards[0],
@@ -233,7 +233,7 @@ export default function AnimationsProvider({
         { y: 80, opacity: 0, scale: 0.88, rotateX: -20, z: -200 },
         {
           y: 0, opacity: 1, scale: 1, rotateX: 0, z: 0,
-          duration: 0.8, ease: "power4.out", delay: (i % 3) * 0.06,
+          duration: 1.2, ease: "power4.out", delay: (i % 3) * 0.08,
           scrollTrigger: { trigger: tile, start: "top 92%" },
         }
       );
@@ -263,7 +263,7 @@ export default function AnimationsProvider({
       gsap.set(words, { opacity: 0.1, rotateX: 40, transformPerspective: 800, transformOrigin: "50% 100%" });
       gsap.to(words, {
         opacity: 1, rotateX: 0, stagger: 0.06, ease: "power2.out",
-        scrollTrigger: { trigger: ".pull", start: "top 75%", end: "center 45%", scrub: 0.6 },
+        scrollTrigger: { trigger: ".pull", start: "top 75%", end: "center 45%", scrub: true },
       });
     }
 
@@ -285,7 +285,7 @@ export default function AnimationsProvider({
       gsap.fromTo(s,
         { opacity: 0, rotateY: -30, x: -30, transformPerspective: 1200 },
         {
-          opacity: 1, rotateY: 0, x: 0, duration: 0.65, ease, delay: i * 0.07,
+          opacity: 1, rotateY: 0, x: 0, duration: 1.0, ease, delay: i * 0.1,
           scrollTrigger: { trigger: s, start: "top 90%" },
         }
       );
