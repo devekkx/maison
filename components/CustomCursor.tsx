@@ -137,12 +137,12 @@ export default function CustomCursor() {
 
     let rafId: number;
     const tick = () => {
-      rx += (mx - rx) * 0.18;
-      ry += (my - ry) * 0.18;
-      ix += (mx - ix) * 0.12;
-      iy += (my - iy) * 0.12;
+      rx += (mx - rx) * 0.28;
+      ry += (my - ry) * 0.28;
+      ix += (mx - ix) * 0.22;
+      iy += (my - iy) * 0.22;
       const dx = mx - lastX;
-      angle += (dx * 1.4 - angle) * 0.15;
+      angle += (dx * 1.4 - angle) * 0.22;
       angle = Math.max(-30, Math.min(30, angle));
       lastX = mx;
       setRing(rx, ry);

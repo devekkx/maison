@@ -259,8 +259,8 @@ html.has-custom-cursor * {
   border-radius: 999px;
   border: 1px solid var(--paper);
   mix-blend-mode: difference;
-  transition: width 0.35s, height 0.35s, border-color 0.25s, opacity 0.25s,
-    background 0.25s;
+  transition: width 0.18s, height 0.18s, border-color 0.15s, opacity 0.2s,
+    background 0.18s;
 }
 
 .cur-ring.hover {
