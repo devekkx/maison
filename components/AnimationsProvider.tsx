@@ -7,6 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
+// fastScrollEnd/ignoreMobileResize exist at runtime but aren't in the 3.x typedefs yet
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ScrollTrigger.config({ fastScrollEnd: true, ignoreMobileResize: true } as any);
 
 export default function AnimationsProvider({
   children,
@@ -88,7 +91,7 @@ export default function AnimationsProvider({
           { yPercent: -120, rotateX: 60, opacity: 0, stagger: 0.05, ease: "power3.in", duration: 0.9 },
           0.05
         )
-        .to(intro, { scale: 1.15, filter: "blur(8px)", opacity: 0, ease: "power2.in", duration: 1 }, 0.2);
+        .to(intro, { scale: 1.08, opacity: 0, ease: "power2.in", duration: 1 }, 0.2);
     }
 
     // ── HERO 3D line reveal ─────────────────────────────────
@@ -132,7 +135,8 @@ export default function AnimationsProvider({
       gsap.to(heroBg, {
         yPercent: intensity * 100,
         ease: "none",
-        scrollTrigger: { trigger: heroBg, start: "top top", end: "bottom top", scrub: true },
+        force3D: true,
+        scrollTrigger: { trigger: heroBg, start: "top top", end: "bottom top", scrub: 1.2 },
       });
     }
 
@@ -140,15 +144,17 @@ export default function AnimationsProvider({
     const heroCard = document.querySelector<HTMLElement>(".hero-card");
     const heroSection = document.querySelector<HTMLElement>(".hero");
     if (heroCard && heroSection) {
-      gsap.set(heroCard, { transformPerspective: 1200, transformStyle: "preserve-3d" });
+      gsap.set(heroCard, { transformPerspective: 1200, transformStyle: "preserve-3d", force3D: true });
+      const tiltY = gsap.quickTo(heroCard, "rotateY", { duration: 0.6, ease });
+      const tiltX = gsap.quickTo(heroCard, "rotateX", { duration: 0.6, ease });
       heroSection.addEventListener("mousemove", (e: MouseEvent) => {
         const r = heroSection.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - 0.5;
-        const py = (e.clientY - r.top) / r.height - 0.5;
-        gsap.to(heroCard, { rotateY: px * 12, rotateX: -py * 10, duration: 0.6, ease });
+        tiltY((e.clientX - r.left) / r.width * 12 - 6);
+        tiltX(-((e.clientY - r.top) / r.height * 10 - 5));
       });
       heroSection.addEventListener("mouseleave", () => {
-        gsap.to(heroCard, { rotateY: 0, rotateX: 0, duration: 0.8, ease });
+        tiltY(0);
+        tiltX(0);
       });
     }
 
@@ -263,13 +269,15 @@ export default function AnimationsProvider({
 
     // ── Hero meta fade on scroll ───────────────────────────
     gsap.to(".hero-meta", {
-      opacity: 0.15, y: -80, rotateX: 12, transformPerspective: 1200,
+      opacity: 0.15, y: -60,
       ease: "none",
-      scrollTrigger: { trigger: ".hero", start: "center top", end: "bottom top", scrub: true },
+      force3D: true,
+      scrollTrigger: { trigger: ".hero", start: "center top", end: "bottom top", scrub: 1 },
     });
     gsap.to(".hero-bg", {
-      scale: 1.1, ease: "none",
-      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
+      scale: 1.08, ease: "none",
+      force3D: true,
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 },
     });
 
     // ── About stats roll-in ────────────────────────────────

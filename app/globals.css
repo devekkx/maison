@@ -499,6 +499,7 @@ html.has-custom-cursor * {
   flex-direction: column;
   gap: 32px;
   max-width: 680px;
+  will-change: transform, opacity;
 }
 
 .hero h1 {
