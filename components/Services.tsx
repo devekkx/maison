@@ -12,14 +12,14 @@ export default function Services() {
     >
       <div className="head">
         <div className="eyebrow" data-reveal-y>
-          Services — N° 03
+          Services · N° 03
         </div>
         <h2 data-reveal-y>
           The <em>menu.</em>
         </h2>
         <p data-reveal-y>
           Six rituals, priced honestly. Consultation included. All services
-          finish with a head-wash and a black coffee — or a glass of something
+          finish with a head-wash and a black coffee, or a glass of something
           stronger.
         </p>
       </div>

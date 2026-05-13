@@ -12,7 +12,7 @@ export default function PullQuote() {
           </span>
         ))}
       </blockquote>
-      <cite>— Amara Osei, founder</cite>
+      <cite>Amara Osei, founder</cite>
     </section>
   );
 }

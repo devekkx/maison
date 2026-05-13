@@ -64,7 +64,7 @@ export default function Hero() {
         <div className="hero-sub" data-reveal-y>
           <p>
             A studio of one. By appointment, no walk-ins. Cuts, color, braids
-            and texture — taken slowly, in two-hour sittings. One chair, one
+            and texture, taken slowly, in two-hour sittings. One chair, one
             client, undivided.
           </p>
         </div>

@@ -38,11 +38,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Maison Noire — Salon & Studio",
+  title: "Maison Noire · Salon & Studio",
   description:
-    "A studio of one. By appointment, no walk-ins. Cuts, color, braids and texture — taken slowly, in two-hour sittings. Brooklyn, NY.",
+    "A studio of one. By appointment, no walk-ins. Cuts, color, braids and texture, taken slowly, in two-hour sittings. Brooklyn, NY.",
   openGraph: {
-    title: "Maison Noire — Salon & Studio",
+    title: "Maison Noire · Salon & Studio",
     description:
       "Editorial hair studio. One chair, one client. Brooklyn, NY.",
     type: "website",

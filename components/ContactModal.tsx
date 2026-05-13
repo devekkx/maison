@@ -14,7 +14,7 @@ type FieldDef =
 const FIELDS: FieldDef[] = [
   { kind: "input", name: "name", id: "m-name", label: "Full name", placeholder: "Imani A.", autoComplete: "name", required: true },
   { kind: "input", name: "email", id: "m-email", label: "Email", type: "email", placeholder: "you@example.com", autoComplete: "email", required: true },
-  { kind: "input", name: "phone", id: "m-phone", label: "Phone", placeholder: "+1 (—) — —", autoComplete: "tel" },
+  { kind: "input", name: "phone", id: "m-phone", label: "Phone", placeholder: "+1 (212) 000 0000", autoComplete: "tel" },
   { kind: "input", name: "date", id: "m-date", label: "Preferred date", type: "date" },
   { kind: "select", name: "service", id: "m-service", label: "Service", className: "full" },
   { kind: "textarea", name: "notes", id: "m-notes", label: "Notes (hair length, references, anything I should know)", placeholder: "Currently shoulder-length, last colored in February…", className: "full" },
@@ -90,7 +90,7 @@ export default function ContactModal() {
           ) : (
             <form action={action} className="contact-form">
               <div>
-                <div className="eyebrow eyebrow-warm">Booking request — N° 01</div>
+                <div className="eyebrow eyebrow-warm">Booking request · N° 01</div>
                 <h4>A few <em>details.</em></h4>
               </div>
 
@@ -123,7 +123,7 @@ export default function ContactModal() {
                         {SERVICES.map((s) => (
                           <option key={s.id}>{s.name} {s.italic}</option>
                         ))}
-                        <option>Not sure — I&apos;d like a consultation</option>
+                        <option>Not sure, I&apos;d like a consultation</option>
                       </select>
                     )}
 

@@ -66,7 +66,7 @@ export async function submitContact(
   const textBody = rows.map(([k, v]) => `${k}: ${v}`).join("\n");
   const htmlBody = `
     <h2 style="font-family:sans-serif;margin-bottom:24px">
-      New booking request — Maison Noire
+      New booking request - Maison Noire
     </h2>
     <table style="font-family:sans-serif;border-collapse:collapse;width:100%">
       ${rows
@@ -85,13 +85,13 @@ export async function submitContact(
     from: fromEmail,
     to: toEmail,
     replyTo: email,
-    subject: `Booking request from ${name} — ${service}`,
+    subject: `Booking request from ${name} - ${service}`,
     text: textBody,
     html: htmlBody,
   });
 
   if (error) {
-    return { status: "failure", message: "Failed to send — please try again." };
+    return { status: "failure", message: "Failed to send - please try again." };
   }
 
   return { status: "success", email };

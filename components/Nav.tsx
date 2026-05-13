@@ -46,7 +46,7 @@ export default function Nav() {
             Book a chair
           </button>
 
-          {/* Hamburger — mobile only */}
+          {/* Hamburger (mobile only) */}
           <button
             type="button"
             className={`hamburger${menuOpen ? " open" : ""}`}

@@ -3,7 +3,7 @@ export default function About() {
     <section className="about" id="about" data-screen-label="02 About">
       <div className="l">
         <div className="eyebrow eyebrow-warm" data-reveal-y>
-          About — N° 02
+          About · N° 02
         </div>
         <h2 data-reveal-y>
           A studio,
@@ -20,8 +20,8 @@ export default function About() {
         </p>
         <p data-reveal-y>
           One stylist. One chair. No walk-ins, no assistants, no rush. Each
-          appointment begins with a fifteen-minute consultation over coffee —
-          about your week, your wedding, the way you sleep on it — before any
+          appointment begins with a fifteen-minute consultation over coffee,
+          about your week, your wedding, the way you sleep on it, before any
           scissors come out.
         </p>
         <div className="stats">

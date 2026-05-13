@@ -40,7 +40,7 @@ export const SERVICES: Service[] = [
     num: "N° 02",
     name: "Bespoke",
     italic: "Color",
-    desc: "Custom-mixed single-process, balayage, or full lift — with a tone-protective gloss finish.",
+    desc: "Custom-mixed single-process, balayage, or full lift , with a tone-protective gloss finish.",
     price: "from $240",
     dur: "2½ hrs",
   },
@@ -49,7 +49,7 @@ export const SERVICES: Service[] = [
     num: "N° 03",
     name: "Braids",
     italic: "& Locs",
-    desc: "Knotless box braids, cornrows, two-strand twists, and loc maintenance — protective styles, done patiently.",
+    desc: "Knotless box braids, cornrows, two-strand twists, and loc maintenance , protective styles, done patiently.",
     price: "from $180",
     dur: "3–6 hrs",
   },
@@ -67,7 +67,7 @@ export const SERVICES: Service[] = [
     num: "N° 05",
     name: "Brow",
     italic: "Architecture",
-    desc: "Mapping, shaping, and lamination — sculpted to the bones of the face, never to a trend.",
+    desc: "Mapping, shaping, and lamination , sculpted to the bones of the face, never to a trend.",
     price: "$65",
     dur: "45 min",
   },
@@ -91,7 +91,7 @@ export const OWNER: Owner = {
     "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1400&q=80",
   portrait3:
     "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1400&q=80",
-  bio: "Ten years behind the chair. Trained at Sassoon London, then four years at a color atelier in Paris before opening Maison Noire on her own terms — one chair, one client, no rush.",
+  bio: "Ten years behind the chair. Trained at Sassoon London, then four years at a color atelier in Paris before opening Maison Noire on her own terms , one chair, one client, no rush.",
   signature: "A. Osei",
 };
 
