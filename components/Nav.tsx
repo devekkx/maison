@@ -38,6 +38,7 @@ export default function Nav() {
 
         <div className="nav-right">
           <button
+            type="button"
             className="cta"
             onClick={() => openContact()}
             aria-label="Book a chair"
@@ -47,6 +48,7 @@ export default function Nav() {
 
           {/* Hamburger — mobile only */}
           <button
+            type="button"
             className={`hamburger${menuOpen ? " open" : ""}`}
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -70,6 +72,7 @@ export default function Nav() {
           <a href="#artists" onClick={() => setMenuOpen(false)}>Artists</a>
           <a href="#gallery" onClick={() => setMenuOpen(false)}>Gallery</a>
           <button
+            type="button"
             className="mobile-menu-book"
             onClick={() => { setMenuOpen(false); openContact(); }}
           >
