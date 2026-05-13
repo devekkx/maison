@@ -364,7 +364,6 @@ html.has-custom-cursor * {
   background: rgba(12, 10, 8, 0.55);
   -webkit-backdrop-filter: blur(18px) saturate(1.6);
   backdrop-filter: blur(18px) saturate(1.6);
-  border-bottom: 0.5px solid rgba(239, 233, 223, 0.08);
 }
 
 .nav .logo {
