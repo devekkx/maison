@@ -1,17 +1,17 @@
 import { STAR } from "@/lib/data";
 
 const ITEMS = [
-  "Custom cuts",
+  "Sharp. Clean. Precise.",
   STAR,
-  "Bespoke color",
+  "The fade doesn't lie",
   STAR,
-  "Ghana braids",
+  "Sit. Breathe. Trust.",
   STAR,
-  "Loc rituals",
+  "Two hours · No interruptions",
   STAR,
-  "Brow architecture",
+  "Hair is identity",
   STAR,
-  "Bridal atelier",
+  "Patience is the service",
   STAR,
 ];
 

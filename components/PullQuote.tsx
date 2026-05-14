@@ -1,5 +1,5 @@
 const QUOTE =
-  "We don't do quick. We don't do trends. We do the haircut you'll keep for three years.";
+  "We don't do quick. We don't do trends. We do the haircut you'll keep you looking stunning.";
 
 export default function PullQuote() {
   const words = QUOTE.split(" ");

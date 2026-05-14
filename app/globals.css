@@ -410,6 +410,7 @@ html.has-custom-cursor * {
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   padding: 120px 36px 80px;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -678,10 +679,13 @@ html.has-custom-cursor * {
 }
 
 .modal {
-  width: min(960px, 100%);
+  width: min(960px, calc(100vw - 48px));
+  max-width: min(960px, calc(100vw - 48px));
   max-height: calc(100vh - 64px);
   background: #161310;
   border: 0.5px solid var(--line-strong);
+  padding: 0;
+  gap: 0;
   display: grid;
   grid-template-columns: 0.85fr 1fr;
   overflow: hidden;
@@ -985,6 +989,33 @@ html.has-custom-cursor * {
   max-width: 380px;
   line-height: 1.6;
   font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .modal {
+    grid-template-columns: 1fr;
+    max-height: 90dvh;
+  }
+  .modal-aside {
+    min-height: 180px;
+    padding: 28px 32px;
+    gap: 16px;
+    justify-content: flex-end;
+  }
+  .modal-aside h3 {
+    font-size: 30px;
+  }
+  .modal-aside p,
+  .modal-aside .meta {
+    display: none;
+  }
+  .modal-main {
+    padding: 28px 32px;
+    gap: 18px;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1841,6 +1872,8 @@ html.has-custom-cursor * {
   .hero {
     grid-template-columns: 1fr;
     padding-top: 100px;
+    perspective: none;
+    transform-style: flat;
   }
   .hero-card {
     justify-self: start;

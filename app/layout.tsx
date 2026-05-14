@@ -40,11 +40,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Maison Noire · Salon & Studio",
   description:
-    "A studio of one. By appointment, no walk-ins. Cuts, color, braids and texture, taken slowly, in two-hour sittings. Brooklyn, NY.",
+    "A studio of one. By appointment, no walk-ins. Cuts, color, braids and texture, taken slowly, in two-hour sittings. Labone, Accra.",
   openGraph: {
     title: "Maison Noire · Salon & Studio",
     description:
-      "Editorial hair studio. One chair, one client. Brooklyn, NY.",
+      "Editorial hair studio. One chair, one client. Labone, Accra.",
     type: "website",
   },
 };
@@ -57,7 +57,7 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${instrumentSerif.variable} ${jakartaSans.variable} ${jetbrainsMono.variable}`}
     >
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
