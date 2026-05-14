@@ -23,6 +23,7 @@ export interface GalleryItem {
   src: string;
   cap: string;
   cls: string;
+  category: string;
 }
 
 export const SERVICES: Service[] = [
@@ -97,53 +98,62 @@ export const OWNER: Owner = {
 
 export const GALLERY: GalleryItem[] = [
   {
-    src: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=80",
+    src: "https://images.unsplash.com/photo-1567894340315-735d7c361db0?auto=format&fit=crop&w=1000&q=80",
     cap: "Fade · Kwame",
     cls: "g-a",
+    category: "Cut",
   },
   {
-    src: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=900&q=80",
+    src: "https://images.unsplash.com/photo-1686671805337-7d8aa64b965f?auto=format&fit=crop&w=900&q=80",
     cap: "Lineup · Kojo",
     cls: "g-b",
+    category: "Cut",
   },
   {
-    src: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=900&q=80",
-    cap: "Grooming · Yaw",
+    src: "https://images.unsplash.com/photo-1717089256239-dc2ed4d9dfc6?auto=format&fit=crop&w=900&q=80",
+    cap: "Cut · Yaw",
     cls: "g-c",
+    category: "Cut",
   },
   {
-    src: "https://images.unsplash.com/photo-1553514029-1318c9127859?auto=format&fit=crop&w=900&q=80",
+    src: "https://images.unsplash.com/photo-1596580817363-a4a8f67d4bc8?auto=format&fit=crop&w=900&q=80",
     cap: "Brow shape",
     cls: "g-d",
+    category: "Brows",
   },
   {
-    src: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=80",
+    src: "https://images.unsplash.com/photo-1551493923-9a1b98921caa?auto=format&fit=crop&w=900&q=80",
     cap: "Locs · Kweku",
     cls: "g-e",
+    category: "Braids",
   },
   {
-    src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=80",
-    cap: "Editorial · Ato",
+    src: "https://images.unsplash.com/photo-1637708653394-e4b51eaeb28e?auto=format&fit=crop&w=1000&q=80",
+    cap: "Colour · Ato",
     cls: "g-f",
+    category: "Color",
   },
   {
-    src: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80",
-    cap: "Studio · Kwesi",
+    src: "https://images.unsplash.com/photo-1744636574936-9b3de5c85d0d?auto=format&fit=crop&w=900&q=80",
+    cap: "Afro · Kwesi",
     cls: "g-g",
+    category: "Cut",
   },
   {
-    src: "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=1000&q=80",
-    cap: "Locs maintenance",
+    src: "https://images.unsplash.com/photo-1541784493975-77e8adc9e23e?auto=format&fit=crop&w=1000&q=80",
+    cap: "Braids · Kofi",
     cls: "g-h",
+    category: "Braids",
   },
   {
-    src: "https://images.unsplash.com/photo-1590086782957-93c06ef21604?auto=format&fit=crop&w=900&q=80",
-    cap: "Scalp ritual",
+    src: "https://images.unsplash.com/photo-1614010966237-74489a16848b?auto=format&fit=crop&w=900&q=80",
+    cap: "Colour · Yaw",
     cls: "g-i",
+    category: "Color",
   },
 ];
 
-export const GALLERY_FILTERS = ["All", "Cut", "Color", "Braids", "Bridal", "Brows"];
+export const GALLERY_FILTERS = ["All", "Cut", "Braids", "Color", "Brows"];
 
 export const HERO_SLIDES = [
   "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1800&q=80",

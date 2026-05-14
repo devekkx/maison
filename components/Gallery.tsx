@@ -6,6 +6,7 @@ import { GALLERY, GALLERY_FILTERS } from "@/lib/data";
 
 export default function Gallery() {
   const [filter, setFilter] = useState("All");
+  const visible = filter === "All" ? GALLERY : GALLERY.filter((g) => g.category === filter);
 
   return (
     <section className="gallery" id="gallery" data-screen-label="05 Gallery">
@@ -27,7 +28,7 @@ export default function Gallery() {
       </div>
 
       <div className="gallery-grid">
-        {GALLERY.map((g, i) => (
+        {visible.map((g, i) => (
           <figure className={`tile ${g.cls}`} key={i} data-tile>
             <Image
               src={g.src}
