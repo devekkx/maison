@@ -15,7 +15,7 @@ export default function Owner() {
           <br />
           worked, by a single stylist.
           <br />
-          Booking is with her, directly.
+          Booking is with him, directly.
         </div>
       </div>
 

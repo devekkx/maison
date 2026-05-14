@@ -101,7 +101,7 @@ export default function ContactModal() {
             </p>
           </div>
           <div className="meta">
-            <div>Stylist <span>Amara Osei</span></div>
+            <div>Stylist <span>Kofi Osei</span></div>
             <div>Studio <span>5 Switchback Rd · Labone, Accra</span></div>
             <div>Hours <span>Tue–Sat · 09:00–19:00</span></div>
           </div>

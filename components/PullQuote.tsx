@@ -12,7 +12,7 @@ export default function PullQuote() {
           </span>
         ))}
       </blockquote>
-      <cite>Amara Osei, founder · Labone, Accra</cite>
+      <cite>Kofi Osei, founder · Labone, Accra</cite>
     </section>
   );
 }

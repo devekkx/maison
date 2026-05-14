@@ -13,7 +13,7 @@ export default function About() {
       </div>
       <div className="r">
         <p data-reveal-y>
-          Maison Noire was opened in 2014 by Amara Osei in a former tailor&apos;s
+          Maison Noire was opened in 2014 by Kofi Osei in a former tailor&apos;s
           shop on Switchback Road, Labone. The brief has not changed since: hair
           that looks the way you actually live, not the way a chair looks under
           studio light.

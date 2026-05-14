@@ -83,61 +83,61 @@ export const SERVICES: Service[] = [
 ];
 
 export const OWNER: Owner = {
-  id: "amara",
-  name: "Amara Osei",
+  id: "kofi",
+  name: "Kofi Osei",
   role: "Founder, sole stylist · Cut · Color · Braids",
-  img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=1400&q=80",
+  img: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=1400&q=80",
   portrait2:
-    "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1400&q=80",
+    "https://images.unsplash.com/photo-1590086782957-93c06ef21604?auto=format&fit=crop&w=1400&q=80",
   portrait3:
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1400&q=80",
-  bio: "Ten years behind the chair. Trained in Accra, then at Sassoon London, and three years at a colour house in Lagos before coming home and opening Maison Noire on her own terms, one chair, one client, no rush.",
-  signature: "A. Osei",
+    "https://images.unsplash.com/photo-1553514029-1318c9127859?auto=format&fit=crop&w=1400&q=80",
+  bio: "Ten years behind the chair. Trained in Accra, then at Sassoon London, and three years at a colour house in Lagos before coming home and opening Maison Noire on his own terms, one chair, one client, no rush.",
+  signature: "K. Osei",
 };
 
 export const GALLERY: GalleryItem[] = [
   {
-    src: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=1000&q=80",
-    cap: "Knotless · Ama",
+    src: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=80",
+    cap: "Fade · Kwame",
     cls: "g-a",
   },
   {
-    src: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80",
-    cap: "Curl cut · Abena",
+    src: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=900&q=80",
+    cap: "Lineup · Kojo",
     cls: "g-b",
   },
   {
-    src: "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=900&q=80",
-    cap: "Color study · Amara",
+    src: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=900&q=80",
+    cap: "Grooming · Yaw",
     cls: "g-c",
   },
   {
-    src: "https://images.unsplash.com/photo-1522337094846-8a818192de1f?auto=format&fit=crop&w=900&q=80",
-    cap: "Brow lamination",
+    src: "https://images.unsplash.com/photo-1553514029-1318c9127859?auto=format&fit=crop&w=900&q=80",
+    cap: "Brow shape",
     cls: "g-d",
   },
   {
-    src: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=900&q=80",
-    cap: "Twist out · Akosua",
+    src: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=80",
+    cap: "Locs · Kweku",
     cls: "g-e",
   },
   {
-    src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=1000&q=80",
-    cap: "Balayage · Amara",
+    src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=80",
+    cap: "Editorial · Ato",
     cls: "g-f",
   },
   {
-    src: "https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&w=900&q=80",
-    cap: "Bridal trial · Adjoa",
+    src: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80",
+    cap: "Studio · Kwesi",
     cls: "g-g",
   },
   {
-    src: "https://images.unsplash.com/photo-1620331311520-246422fd82f9?auto=format&fit=crop&w=1000&q=80",
+    src: "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=1000&q=80",
     cap: "Locs maintenance",
     cls: "g-h",
   },
   {
-    src: "https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?auto=format&fit=crop&w=900&q=80",
+    src: "https://images.unsplash.com/photo-1590086782957-93c06ef21604?auto=format&fit=crop&w=900&q=80",
     cap: "Scalp ritual",
     cls: "g-i",
   },
@@ -146,10 +146,10 @@ export const GALLERY: GalleryItem[] = [
 export const GALLERY_FILTERS = ["All", "Cut", "Color", "Braids", "Bridal", "Brows"];
 
 export const HERO_SLIDES = [
-  "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1800&q=80",
-  "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=1800&q=80",
-  "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=1800&q=80",
-  "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=1800&q=80",
+  "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1800&q=80",
+  "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=1800&q=80",
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1800&q=80",
+  "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1800&q=80",
 ];
 
 export const STAR = "✦";
