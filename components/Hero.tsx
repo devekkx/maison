@@ -47,7 +47,7 @@ export default function Hero() {
 
       <div className="hero-meta">
         <div className="eyebrow" data-reveal-y>
-          Salon · Atelier · Est. 2014 · Brooklyn
+          Salon · Atelier · Est. 2014 · Accra
         </div>
         <h1>
           <span className="stack">
@@ -74,15 +74,15 @@ export default function Hero() {
       <aside className="hero-card" data-reveal-y>
         <div className="row">
           <span className="label">Next opening</span>
-          <span className="value">Thu, May 7 · 14:00</span>
+          <span className="value">Thu, May 15 · 10:00</span>
         </div>
         <div className="row">
           <span className="label">Studio</span>
-          <span className="value">217 Franklin St · BK</span>
+          <span className="value">5 Switchback Rd · Labone</span>
         </div>
         <div className="row">
           <span className="label">Hours</span>
-          <span className="value">Tue–Sat · 10–20</span>
+          <span className="value">Tue–Sat · 09–19</span>
         </div>
         <Button className="book" onClick={() => openContact()}>
           Reserve a chair <span>→</span>

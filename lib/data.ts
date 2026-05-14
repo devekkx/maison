@@ -32,7 +32,7 @@ export const SERVICES: Service[] = [
     name: "Signature Cut",
     italic: "& Style",
     desc: "A consultation-led precision cut tailored to your hair texture, lifestyle, and the way you actually wear it.",
-    price: "$120",
+    price: "₵800",
     dur: "90 min",
   },
   {
@@ -40,8 +40,8 @@ export const SERVICES: Service[] = [
     num: "N° 02",
     name: "Bespoke",
     italic: "Color",
-    desc: "Custom-mixed single-process, balayage, or full lift , with a tone-protective gloss finish.",
-    price: "from $240",
+    desc: "Custom-mixed single-process, balayage, or full lift, with a tone-protective gloss finish.",
+    price: "from ₵1,600",
     dur: "2½ hrs",
   },
   {
@@ -49,8 +49,8 @@ export const SERVICES: Service[] = [
     num: "N° 03",
     name: "Braids",
     italic: "& Locs",
-    desc: "Knotless box braids, cornrows, two-strand twists, and loc maintenance , protective styles, done patiently.",
-    price: "from $180",
+    desc: "Ghana braids, knotless box braids, cornrows, Bantu knots, and loc maintenance, protective styles done patiently.",
+    price: "from ₵1,200",
     dur: "3–6 hrs",
   },
   {
@@ -58,8 +58,8 @@ export const SERVICES: Service[] = [
     num: "N° 04",
     name: "Scalp",
     italic: "Ritual",
-    desc: "A 75-minute treatment: aromatic oils, steam, and a slow scalp massage. Leaves hair softer, the head quieter.",
-    price: "$95",
+    desc: "A 75-minute treatment: raw shea butter, baobab oil, steam, and a slow scalp massage. Leaves hair softer, the head quieter.",
+    price: "₵600",
     dur: "75 min",
   },
   {
@@ -67,8 +67,8 @@ export const SERVICES: Service[] = [
     num: "N° 05",
     name: "Brow",
     italic: "Architecture",
-    desc: "Mapping, shaping, and lamination , sculpted to the bones of the face, never to a trend.",
-    price: "$65",
+    desc: "Mapping, shaping, and lamination, sculpted to the bones of the face, never to a trend.",
+    price: "₵400",
     dur: "45 min",
   },
   {
@@ -76,8 +76,8 @@ export const SERVICES: Service[] = [
     num: "N° 06",
     name: "Bridal",
     italic: "Atelier",
-    desc: "Half-day private session: trial, day-of styling, makeup, and a touch-up kit. By appointment, two months ahead.",
-    price: "$680",
+    desc: "Half-day private session: trial, day-of styling for your white wedding or traditional, and a touch-up kit. By appointment, two months ahead.",
+    price: "₵4,500",
     dur: "4 hrs",
   },
 ];
@@ -91,19 +91,19 @@ export const OWNER: Owner = {
     "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1400&q=80",
   portrait3:
     "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1400&q=80",
-  bio: "Ten years behind the chair. Trained at Sassoon London, then four years at a color atelier in Paris before opening Maison Noire on her own terms , one chair, one client, no rush.",
+  bio: "Ten years behind the chair. Trained in Accra, then at Sassoon London, and three years at a colour house in Lagos before coming home and opening Maison Noire on her own terms, one chair, one client, no rush.",
   signature: "A. Osei",
 };
 
 export const GALLERY: GalleryItem[] = [
   {
     src: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=1000&q=80",
-    cap: "Knotless · Sade",
+    cap: "Knotless · Ama",
     cls: "g-a",
   },
   {
     src: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80",
-    cap: "Curl cut · Jules",
+    cap: "Curl cut · Abena",
     cls: "g-b",
   },
   {
@@ -118,7 +118,7 @@ export const GALLERY: GalleryItem[] = [
   },
   {
     src: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=900&q=80",
-    cap: "Twist out · Sade",
+    cap: "Twist out · Akosua",
     cls: "g-e",
   },
   {
@@ -128,7 +128,7 @@ export const GALLERY: GalleryItem[] = [
   },
   {
     src: "https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&w=900&q=80",
-    cap: "Bridal trial",
+    cap: "Bridal trial · Adjoa",
     cls: "g-g",
   },
   {

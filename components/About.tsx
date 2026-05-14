@@ -13,16 +13,16 @@ export default function About() {
       </div>
       <div className="r">
         <p data-reveal-y>
-          Maison Noire was opened in 2014 by Amara Osei in a former framing
-          shop on Franklin Street. The brief has not changed since: hair that
-          looks the way you actually live, not the way a chair looks under
+          Maison Noire was opened in 2014 by Amara Osei in a former tailor&apos;s
+          shop on Switchback Road, Labone. The brief has not changed since: hair
+          that looks the way you actually live, not the way a chair looks under
           studio light.
         </p>
         <p data-reveal-y>
           One stylist. One chair. No walk-ins, no assistants, no rush. Each
-          appointment begins with a fifteen-minute consultation over coffee,
-          about your week, your wedding, the way you sleep on it, before any
-          scissors come out.
+          appointment begins with a fifteen-minute consultation over Ghanaian
+          filter coffee, about your week, your outdooring, the way you sleep on
+          it, before any scissors come out.
         </p>
         <div className="stats">
           <div className="stat" data-reveal-y>

@@ -5,7 +5,7 @@ const ITEMS = [
   STAR,
   "Bespoke color",
   STAR,
-  "Knotless braids",
+  "Ghana braids",
   STAR,
   "Loc rituals",
   STAR,

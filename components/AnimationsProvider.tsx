@@ -56,7 +56,7 @@ export default function AnimationsProvider({
     if (intro && introSpacer) {
       gsap.set(introLines, {
         yPercent: 110,
-        rotateX: -85,
+        rotationX: -85,
         opacity: 0,
         transformOrigin: "50% 100% -60px",
       });
@@ -70,7 +70,7 @@ export default function AnimationsProvider({
           introLines,
           {
             yPercent: 0,
-            rotateX: 0,
+            rotationX: 0,
             opacity: 1,
             duration: 1.4,
             ease: "expo.out",
@@ -101,7 +101,7 @@ export default function AnimationsProvider({
           introLines,
           {
             yPercent: -120,
-            rotateX: 60,
+            rotationX: 60,
             opacity: 0,
             stagger: 0.05,
             ease: "power3.in",
@@ -120,13 +120,13 @@ export default function AnimationsProvider({
     const heroLines = gsap.utils.toArray<HTMLElement>("[data-hero-line]");
     gsap.set(heroLines, {
       yPercent: 110,
-      rotateX: -75,
+      rotationX: -75,
       opacity: 0,
       transformOrigin: "50% 100% -40px",
     });
     gsap.to(heroLines, {
       yPercent: 0,
-      rotateX: 0,
+      rotationX: 0,
       opacity: 1,
       duration: 0.9,
       ease: "expo.out",
@@ -145,14 +145,14 @@ export default function AnimationsProvider({
         {
           opacity: 0,
           y: 50,
-          rotateX: 18,
+          rotationX: 18,
           transformPerspective: 1200,
           transformOrigin: "50% 100%",
         },
         {
           opacity: 1,
           y: 0,
-          rotateX: 0,
+          rotationX: 0,
           duration: 1.1,
           ease,
           scrollTrigger: {
@@ -190,8 +190,8 @@ export default function AnimationsProvider({
         transformStyle: "preserve-3d",
         force3D: true,
       });
-      const tiltY = gsap.quickTo(heroCard, "rotateY", { duration: 0.4, ease });
-      const tiltX = gsap.quickTo(heroCard, "rotateX", { duration: 0.4, ease });
+      const tiltY = gsap.quickTo(heroCard, "rotationY", { duration: 0.4, ease });
+      const tiltX = gsap.quickTo(heroCard, "rotationX", { duration: 0.4, ease });
       heroSection.addEventListener("mousemove", (e: MouseEvent) => {
         const r = heroSection.getBoundingClientRect();
         tiltY(((e.clientX - r.left) / r.width) * 12 - 6);
@@ -217,13 +217,13 @@ export default function AnimationsProvider({
           snapBack?.kill();
           gsap.to(marqueeTrack, {
             skewX: skew,
-            rotateY: rot,
+            rotationY: rot,
             duration: 0.4,
             ease,
           });
           snapBack = gsap.to(marqueeTrack, {
             skewX: 0,
-            rotateY: 0,
+            rotationY: 0,
             duration: 0.7,
             ease,
             delay: 0.2,
@@ -239,16 +239,16 @@ export default function AnimationsProvider({
         {
           opacity: 0,
           y: 80,
-          rotateX: -25,
-          rotateY: -8,
+          rotationX: -25,
+          rotationY: -8,
           transformPerspective: 1400,
           transformOrigin: "50% 0%",
         },
         {
           opacity: 1,
           y: 0,
-          rotateX: 0,
-          rotateY: 0,
+          rotationX: 0,
+          rotationY: 0,
           duration: 1.1,
           ease: "power4.out",
           scrollTrigger: { trigger: row, start: "top 88%" },
@@ -281,28 +281,28 @@ export default function AnimationsProvider({
         tl.fromTo(
           cards[0],
           {
-            rotateY: 18,
-            rotateX: 6,
+            rotationY: 18,
+            rotationX: 6,
             x: -40,
             scale: 0.92,
             opacity: 0.4,
             transformOrigin: "0% 50%",
           },
-          { rotateY: 0, rotateX: 0, x: 0, scale: 1, opacity: 1, ease: "none" },
+          { rotationY: 0, rotationX: 0, x: 0, scale: 1, opacity: 1, ease: "none" },
           0,
         );
       if (cards[1])
         tl.fromTo(
           cards[1],
-          { rotateY: -22, x: 60, z: -120, opacity: 0.3 },
-          { rotateY: 0, x: 0, z: 0, opacity: 1, ease: "none" },
+          { rotationY: -22, x: 60, z: -120, opacity: 0.3 },
+          { rotationY: 0, x: 0, z: 0, opacity: 1, ease: "none" },
           0,
         );
       if (cards[2])
         tl.fromTo(
           cards[2],
-          { rotateY: -28, x: 100, z: -180, opacity: 0.2 },
-          { rotateY: 0, x: 0, z: 0, opacity: 1, ease: "none" },
+          { rotationY: -28, x: 100, z: -180, opacity: 0.2 },
+          { rotationY: 0, x: 0, z: 0, opacity: 1, ease: "none" },
           0,
         );
 
@@ -313,15 +313,15 @@ export default function AnimationsProvider({
         cards.forEach((c, i) => {
           const depth = [1, 0.6, 0.4][i] ?? 0.4;
           gsap.to(c, {
-            rotateY: px * 8 * depth,
-            rotateX: -py * 6 * depth,
+            rotationY: px * 8 * depth,
+            rotationX: -py * 6 * depth,
             duration: 0.7,
             ease,
           });
         });
       });
       ownerStage.addEventListener("mouseleave", () => {
-        gsap.to(cards, { rotateY: 0, rotateX: 0, duration: 0.9, ease });
+        gsap.to(cards, { rotationY: 0, rotationX: 0, duration: 0.9, ease });
       });
     }
 
@@ -333,12 +333,12 @@ export default function AnimationsProvider({
       });
       gsap.fromTo(
         tile,
-        { y: 80, opacity: 0, scale: 0.88, rotateX: -20, z: -200 },
+        { y: 80, opacity: 0, scale: 0.88, rotationX: -20, z: -200 },
         {
           y: 0,
           opacity: 1,
           scale: 1,
-          rotateX: 0,
+          rotationX: 0,
           z: 0,
           duration: 1.2,
           ease: "power4.out",
@@ -370,15 +370,15 @@ export default function AnimationsProvider({
         const px = (e.clientX - r.left) / r.width - 0.5;
         const py = (e.clientY - r.top) / r.height - 0.5;
         gsap.to(tile, {
-          rotateY: px * 14,
-          rotateX: -py * 14,
+          rotationY: px * 14,
+          rotationX: -py * 14,
           z: 30,
           duration: 0.5,
           ease,
         });
       });
       tile.addEventListener("mouseleave", () => {
-        gsap.to(tile, { rotateY: 0, rotateX: 0, z: 0, duration: 0.7, ease });
+        gsap.to(tile, { rotationY: 0, rotationX: 0, z: 0, duration: 0.7, ease });
       });
     });
 
@@ -387,13 +387,13 @@ export default function AnimationsProvider({
     if (words.length) {
       gsap.set(words, {
         opacity: 0.1,
-        rotateX: 40,
+        rotationX: 40,
         transformPerspective: 800,
         transformOrigin: "50% 100%",
       });
       gsap.to(words, {
         opacity: 1,
-        rotateX: 0,
+        rotationX: 0,
         stagger: 0.06,
         ease: "power2.out",
         scrollTrigger: {
@@ -434,10 +434,10 @@ export default function AnimationsProvider({
     gsap.utils.toArray<HTMLElement>(".about .stat").forEach((s, i) => {
       gsap.fromTo(
         s,
-        { opacity: 0, rotateY: -30, x: -30, transformPerspective: 1200 },
+        { opacity: 0, rotationY: -30, x: -30, transformPerspective: 1200 },
         {
           opacity: 1,
-          rotateY: 0,
+          rotationY: 0,
           x: 0,
           duration: 1.0,
           ease,
