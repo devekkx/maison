@@ -15,24 +15,26 @@ import CustomCursor from "@/components/CustomCursor";
 export default function Home() {
   return (
     <AnimationsProvider>
-      <div className="grain" aria-hidden="true" />
-      <div className="vignette" aria-hidden="true" />
+      <div id="lenis-wrapper">
+        <div className="grain" aria-hidden="true" />
+        <div className="vignette" aria-hidden="true" />
 
-      <IntroOverlay />
-      <Nav />
-      <main>
-        <Hero />
-        <Marquee />
-        <About />
-        <Services />
-        <Owner />
-        <Gallery />
-        <PullQuote />
-        <EndCTA />
-      </main>
+        <IntroOverlay />
+        <Nav />
+        <main>
+          <Hero />
+          <Marquee />
+          <About />
+          <Services />
+          <Owner />
+          <Gallery />
+          <PullQuote />
+          <EndCTA />
+        </main>
 
-      <ContactModal />
-      <CustomCursor />
+        <ContactModal />
+        <CustomCursor />
+      </div>
     </AnimationsProvider>
   );
 }

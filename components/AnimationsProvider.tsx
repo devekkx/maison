@@ -17,12 +17,28 @@ export default function AnimationsProvider({
   children: ReactNode;
 }) {
   useEffect(() => {
+    const wrapper = document.getElementById("lenis-wrapper") as HTMLElement;
+
     const lenis = new Lenis({
+      wrapper,
+      content: wrapper,
       duration: 0.85,
       easing: (t: number) => 1 - Math.pow(1 - t, 3),
       smoothWheel: true,
       wheelMultiplier: 1.1,
     });
+
+    ScrollTrigger.scrollerProxy(wrapper, {
+      scrollTop(value?: number) {
+        if (value !== undefined) wrapper.scrollTop = value;
+        return wrapper.scrollTop;
+      },
+      getBoundingClientRect() {
+        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+      },
+    });
+
+    ScrollTrigger.defaults({ scroller: wrapper });
 
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((time: number) => lenis.raf(time * 1000));

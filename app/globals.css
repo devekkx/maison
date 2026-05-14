@@ -34,7 +34,19 @@ body {
 }
 
 body {
+  overflow: hidden;
+}
+
+#lenis-wrapper {
+  position: fixed;
+  inset: 0;
+  overflow-y: scroll;
   overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+#lenis-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 a {
