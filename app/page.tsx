@@ -33,8 +33,8 @@ export default function Home() {
         </main>
 
         <ContactModal />
-        <CustomCursor />
       </div>
+      <CustomCursor />
     </AnimationsProvider>
   );
 }
