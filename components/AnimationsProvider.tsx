@@ -41,10 +41,11 @@ export default function AnimationsProvider({
     ScrollTrigger.defaults({ scroller: wrapper });
 
     lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time: number) => lenis.raf(time * 1000));
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
 
-    document.addEventListener("click", (e) => {
+    const onAnchorClick = (e: MouseEvent) => {
       const a = (e.target as HTMLElement).closest("a[href^='#']");
       if (!a) return;
       const href = a.getAttribute("href");
@@ -54,7 +55,8 @@ export default function AnimationsProvider({
         e.preventDefault();
         lenis.scrollTo(target as HTMLElement, { offset: -20, duration: 0.9 });
       }
-    });
+    };
+    document.addEventListener("click", onAnchorClick);
 
     const ease = "power3.out";
 
@@ -468,7 +470,8 @@ export default function AnimationsProvider({
     return () => {
       lenis.destroy();
       ScrollTrigger.getAll().forEach((st) => st.kill());
-      gsap.ticker.remove((time: number) => lenis.raf(time * 1000));
+      gsap.ticker.remove(tick);
+      document.removeEventListener("click", onAnchorClick);
     };
   }, []);
 
