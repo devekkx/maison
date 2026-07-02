@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { GALLERY, GALLERY_FILTERS } from "@/lib/data";
 
 export default function Gallery() {
   const [filter, setFilter] = useState("All");
-  const visible = filter === "All" ? GALLERY : GALLERY.filter((g) => g.category === filter);
+  const visible = useMemo(
+    () => filter === "All" ? GALLERY : GALLERY.filter((g) => g.category === filter),
+    [filter]
+  );
 
   return (
     <section className="gallery" id="gallery" data-screen-label="05 Gallery">
