@@ -86,7 +86,10 @@ export async function submitContact(
   });
 
   if (error) {
-    return { status: "failure", message: "Failed to send - please try again." };
+    const msg = error.name === "validation_error"
+      ? "Your request could not be processed. Please check your details and try again."
+      : "Something went wrong on our end. Please try again in a moment, or email us directly.";
+    return { status: "failure", message: msg };
   }
 
   return { status: "success", email };
