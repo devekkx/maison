@@ -163,3 +163,25 @@ export const HERO_SLIDES = [
 ];
 
 export const STAR = "✦";
+
+export const MARQUEE_ITEMS = [
+  "Sharp. Clean. Precise.",
+  STAR,
+  "The fade doesn't lie",
+  STAR,
+  "Sit. Breathe. Trust.",
+  STAR,
+  "Two hours · No interruptions",
+  STAR,
+  "Hair is identity",
+  STAR,
+  "Patience is the service",
+  STAR,
+] as const;
+
+export const NAV_LINKS = [
+  { href: "#about", label: "About" },
+  { href: "#services", label: "Services" },
+  { href: "#artists", label: "Artists" },
+  { href: "#gallery", label: "Gallery" },
+] as const;
