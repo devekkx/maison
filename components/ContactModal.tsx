@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useActionState } from "react";
 import { SERVICES } from "@/lib/data";
+import { STUDIO_INFO } from "@/lib/studio-data";
 import { submitContact, type ContactFormState } from "@/app/actions/contact";
 import {
   Dialog,
@@ -101,9 +102,9 @@ export default function ContactModal() {
             </p>
           </div>
           <div className="meta">
-            <div>Stylist <span>Kofi Osei</span></div>
-            <div>Studio <span>5 Switchback Rd · Labone, Accra</span></div>
-            <div>Hours <span>Tue–Sat · 09:00–19:00</span></div>
+            <div>Stylist <span>{STUDIO_INFO.stylist}</span></div>
+            <div>Studio <span>{STUDIO_INFO.address.short}, {STUDIO_INFO.address.city}</span></div>
+            <div>Hours <span>{STUDIO_INFO.hours.display}</span></div>
           </div>
         </aside>
 
