@@ -4,12 +4,17 @@ import { Resend } from "resend";
 import { z } from "zod";
 
 const contactSchema = z.object({
-  name: z.string().min(1, "Name is required").max(100),
-  email: z.string().email("Invalid email").max(200),
-  phone: z.string().max(30).optional(),
-  service: z.string().min(1).max(100),
+  name: z.string().min(1, "Name is required").max(100, "Name is too long"),
+  email: z.string().email("Please enter a valid email address").max(200),
+  phone: z
+    .string()
+    .max(30)
+    .regex(/^[+\d\s()\-]*$/, "Please enter a valid phone number")
+    .optional()
+    .or(z.literal("")),
+  service: z.string().min(1, "Please select a service").max(100),
   date: z.string().max(20).optional(),
-  notes: z.string().max(2000).optional(),
+  notes: z.string().max(2000, "Notes must be under 2000 characters").optional(),
 });
 
 export type ContactFormState =
