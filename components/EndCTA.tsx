@@ -1,5 +1,6 @@
 "use client";
 
+import { STUDIO_INFO } from "@/lib/studio-data";
 import { openContact } from "@/lib/contact";
 
 export default function EndCTA() {
@@ -13,11 +14,11 @@ export default function EndCTA() {
           <div className="col" data-reveal-y>
             <h4>Studio</h4>
             <p>
-              5 Switchback Road
+              {STUDIO_INFO.address.street}
               <br />
-              Labone, Accra, Ghana
+              {STUDIO_INFO.address.neighborhood}, {STUDIO_INFO.address.city}, {STUDIO_INFO.address.country}
               <br />
-              <a href="https://maps.google.com/?q=5+Switchback+Road+Labone+Accra+Ghana" target="_blank" rel="noopener noreferrer">
+              <a href={STUDIO_INFO.address.mapsUrl} target="_blank" rel="noopener noreferrer">
                 Get directions →
               </a>
             </p>
@@ -36,26 +37,26 @@ export default function EndCTA() {
                   if (e.key === "Enter") openContact();
                 }}
               >
-                book@maisonnoire.studio
+                {STUDIO_INFO.contact.email}
               </a>
               <br />
-              +233 20 955 0144
+              {STUDIO_INFO.contact.phone}
               <br />
-              Tue–Sat · 09:00–19:00
+              {STUDIO_INFO.hours.display}
             </p>
           </div>
           <div className="col" data-reveal-y>
             <h4>Follow</h4>
             <p>
-              <a href="#" aria-label="Instagram @maisonnoire.gh">
-                @maisonnoire.gh
+              <a href={STUDIO_INFO.social.instagramUrl} aria-label={`Instagram ${STUDIO_INFO.social.instagram}`}>
+                {STUDIO_INFO.social.instagram}
               </a>
               <br />
-              <a href="#" aria-label="Pinterest">
+              <a href={STUDIO_INFO.social.pinterestUrl} aria-label="Pinterest">
                 Pinterest
               </a>
               <br />
-              <a href="#" aria-label="Newsletter">
+              <a href={STUDIO_INFO.social.newsletterUrl} aria-label="Newsletter">
                 Newsletter
               </a>
             </p>
@@ -63,24 +64,21 @@ export default function EndCTA() {
           <div className="col" data-reveal-y>
             <h4>Press</h4>
             <p>
-              <a href="#" aria-label="Glitz Africa, 2024">
-                Glitz Africa, 2024
-              </a>
-              <br />
-              <a href="#" aria-label="Genevieve, 2023">
-                Genevieve, 2023
-              </a>
-              <br />
-              <a href="#" aria-label="Pulse Ghana, 2022">
-                Pulse Ghana, 2022
-              </a>
+              {STUDIO_INFO.press.map((item) => (
+                <span key={item.name}>
+                  <a href={item.url} aria-label={`${item.name}, ${item.year}`}>
+                    {item.name}, {item.year}
+                  </a>
+                  <br />
+                </span>
+              ))}
             </p>
           </div>
         </div>
       </section>
       <div className="foot-bar">
-        <span>© Maison Noire Studio · 2014–2026</span>
-        <span>NN · Accra</span>
+        <span>© {STUDIO_INFO.name} · {STUDIO_INFO.copyright.since}–{STUDIO_INFO.copyright.through}</span>
+        <span>{STUDIO_INFO.slug} · {STUDIO_INFO.address.city}</span>
         <span>Site by the studio</span>
       </div>
     </>
