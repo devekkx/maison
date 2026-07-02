@@ -1,20 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { NAV_LINKS } from "@/lib/data";
 import { openContact } from "@/lib/contact";
 import { Button } from "@/components/ui/button";
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Close menu on route hash change (anchor navigation)
   useEffect(() => {
     const close = () => setMenuOpen(false);
     window.addEventListener("hashchange", close);
     return () => window.removeEventListener("hashchange", close);
   }, []);
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
@@ -29,12 +28,12 @@ export default function Nav() {
           Maison Noire
         </a>
 
-        {/* Desktop links */}
         <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#artists">Artists</a></li>
-          <li><a href="#gallery">Gallery</a></li>
+          {NAV_LINKS.map(({ href, label }) => (
+            <li key={href}>
+              <a href={href}>{label}</a>
+            </li>
+          ))}
         </ul>
 
         <div className="nav-right">
@@ -48,7 +47,6 @@ export default function Nav() {
             Book a chair
           </Button>
 
-          {/* Hamburger (mobile only) */}
           <Button
             type="button"
             variant="ghost"
@@ -64,16 +62,16 @@ export default function Nav() {
         </div>
       </nav>
 
-      {/* Mobile drawer */}
       <div
         className={`mobile-menu${menuOpen ? " open" : ""}`}
         aria-hidden={!menuOpen}
       >
         <nav className="mobile-menu-links">
-          <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-          <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
-          <a href="#artists" onClick={() => setMenuOpen(false)}>Artists</a>
-          <a href="#gallery" onClick={() => setMenuOpen(false)}>Gallery</a>
+          {NAV_LINKS.map(({ href, label }) => (
+            <a key={href} href={href} onClick={() => setMenuOpen(false)}>
+              {label}
+            </a>
+          ))}
           <Button
             type="button"
             variant="secondary"
