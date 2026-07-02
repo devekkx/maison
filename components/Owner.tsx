@@ -38,7 +38,7 @@ export default function Owner() {
         <figure className="owner-card owner-b" data-owner-card>
           <Image
             src={OWNER.portrait2}
-            alt=""
+            alt={`${OWNER.name} — portrait`}
             fill
             sizes="(max-width: 980px) 50vw, 20vw"
             style={{ objectFit: "cover" }}
@@ -48,7 +48,7 @@ export default function Owner() {
         <figure className="owner-card owner-c" data-owner-card>
           <Image
             src={OWNER.portrait3}
-            alt=""
+            alt={`${OWNER.name} — at work`}
             fill
             sizes="(max-width: 980px) 50vw, 20vw"
             style={{ objectFit: "cover" }}
