@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { HERO_SLIDES, STAR } from "@/lib/data";
+import { HERO_SLIDES } from "@/lib/data";
+import { STUDIO_INFO } from "@/lib/studio-data";
+import { TIMING } from "@/lib/constants";
 import { openContact } from "@/lib/contact";
 import { Button } from "@/components/ui/button";
 
@@ -12,7 +14,7 @@ export default function Hero() {
   useEffect(() => {
     const id = setInterval(
       () => setSlide((s) => (s + 1) % HERO_SLIDES.length),
-      4500
+      TIMING.HERO_CAROUSEL_MS
     );
     return () => clearInterval(id);
   }, []);
@@ -74,15 +76,15 @@ export default function Hero() {
       <aside className="hero-card" data-reveal-y>
         <div className="row">
           <span className="label">Next opening</span>
-          <span className="value">Thu, May 15 · 10:00</span>
+          <span className="value">Thu, Jul 10 · 10:00</span>
         </div>
         <div className="row">
           <span className="label">Studio</span>
-          <span className="value">5 Switchback Rd · Labone</span>
+          <span className="value">{STUDIO_INFO.address.short}</span>
         </div>
         <div className="row">
           <span className="label">Hours</span>
-          <span className="value">Tue–Sat · 09–19</span>
+          <span className="value">{STUDIO_INFO.hours.short}</span>
         </div>
         <Button className="book" onClick={() => openContact()}>
           Reserve a chair <span>→</span>
