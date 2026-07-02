@@ -1,21 +1,6 @@
-import { STAR } from "@/lib/data";
+import { STAR, MARQUEE_ITEMS } from "@/lib/data";
 
-const ITEMS = [
-  "Sharp. Clean. Precise.",
-  STAR,
-  "The fade doesn't lie",
-  STAR,
-  "Sit. Breathe. Trust.",
-  STAR,
-  "Two hours · No interruptions",
-  STAR,
-  "Hair is identity",
-  STAR,
-  "Patience is the service",
-  STAR,
-];
-
-const LOOP = [...ITEMS, ...ITEMS, ...ITEMS];
+const LOOP = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
 
 export default function Marquee() {
   return (
