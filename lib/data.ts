@@ -1,5 +1,9 @@
+export type ServiceId = "cut" | "col" | "brd" | "tre" | "brw" | "brd2";
+
+export type GalleryCategory = "Cut" | "Braids" | "Color" | "Brows";
+
 export interface Service {
-  id: string;
+  id: ServiceId;
   num: string;
   name: string;
   italic: string;
@@ -23,7 +27,7 @@ export interface GalleryItem {
   src: string;
   cap: string;
   cls: string;
-  category: string;
+  category: GalleryCategory;
 }
 
 export const SERVICES: Service[] = [
