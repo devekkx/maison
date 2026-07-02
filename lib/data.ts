@@ -157,7 +157,9 @@ export const GALLERY: GalleryItem[] = [
   },
 ];
 
-export const GALLERY_FILTERS = ["All", "Cut", "Braids", "Color", "Brows"];
+export const GALLERY_FILTERS = ["All", "Cut", "Braids", "Color", "Brows"] as const;
+
+export type GalleryFilter = (typeof GALLERY_FILTERS)[number];
 
 export const HERO_SLIDES = [
   "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1800&q=80",
