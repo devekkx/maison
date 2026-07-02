@@ -95,7 +95,7 @@ export default function Hero() {
         <span>↓ Scroll · The whole story</span>
         <div className="marquee-cue">
           <span className="dot" />
-          <span>Open · Now taking May bookings</span>
+          <span>Open · Now taking July bookings</span>
         </div>
         <span>NN · 04</span>
       </div>
