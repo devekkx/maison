@@ -22,14 +22,9 @@ export async function submitContact(
   _prev: ContactFormState,
   formData: FormData
 ): Promise<ContactFormState> {
-  const raw = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    phone: formData.get("phone"),
-    service: formData.get("service"),
-    date: formData.get("date"),
-    notes: formData.get("notes"),
-  };
+  const raw = Object.fromEntries(
+    ["name", "email", "phone", "service", "date", "notes"].map((k) => [k, formData.get(k)])
+  );
 
   const result = contactSchema.safeParse(raw);
 
