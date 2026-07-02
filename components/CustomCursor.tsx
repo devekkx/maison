@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { CURSOR } from "@/lib/constants";
 
 function ScissorsSVG() {
   return (
@@ -75,15 +76,15 @@ export default function CustomCursor() {
       my = e.clientY;
       setDot(mx, my);
       if (label)
-        label.style.transform = `translate3d(${mx + 22}px,${my + 22}px,0)`;
+        label.style.transform = `translate3d(${mx + CURSOR.LABEL_OFFSET}px,${my + CURSOR.LABEL_OFFSET}px,0)`;
     };
     const onDown = () => {
-      ring.dataset.scale = "0.7";
+      ring.dataset.scale = String(CURSOR.RING_CLICK_SCALE);
       setRing(rx, ry);
       icon.classList.add("snip");
     };
     const onUp = () => {
-      ring.dataset.scale = ring.dataset.hover === "1" ? "2.4" : "1";
+      ring.dataset.scale = ring.dataset.hover === "1" ? String(CURSOR.RING_HOVER_SCALE) : "1";
       setRing(rx, ry);
       icon.classList.remove("snip");
     };
@@ -101,7 +102,7 @@ export default function CustomCursor() {
       if (!t) return;
       ring.classList.add("hover");
       ring.dataset.hover = "1";
-      ring.dataset.scale = "2.4";
+      ring.dataset.scale = String(CURSOR.RING_HOVER_SCALE);
       icon.classList.add("show");
       let txt = (t as HTMLElement).dataset.cursor ?? "";
       if (!txt) {
@@ -137,13 +138,13 @@ export default function CustomCursor() {
 
     let rafId: number;
     const tick = () => {
-      rx += (mx - rx) * 0.5;
-      ry += (my - ry) * 0.5;
-      ix += (mx - ix) * 0.4;
-      iy += (my - iy) * 0.4;
+      rx += (mx - rx) * CURSOR.RING_LERP;
+      ry += (my - ry) * CURSOR.RING_LERP;
+      ix += (mx - ix) * CURSOR.ICON_LERP;
+      iy += (my - iy) * CURSOR.ICON_LERP;
       const dx = mx - lastX;
-      angle += (dx * 1.4 - angle) * 0.38;
-      angle = Math.max(-30, Math.min(30, angle));
+      angle += (dx * CURSOR.ANGLE_DRIVE - angle) * CURSOR.ANGLE_LERP;
+      angle = Math.max(-CURSOR.ANGLE_MAX, Math.min(CURSOR.ANGLE_MAX, angle));
       lastX = mx;
       setRing(rx, ry);
       setIcon(ix, iy, angle);
