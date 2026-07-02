@@ -2,10 +2,10 @@
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
-import { GALLERY, GALLERY_FILTERS } from "@/lib/data";
+import { GALLERY, GALLERY_FILTERS, type GalleryFilter } from "@/lib/data";
 
 export default function Gallery() {
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState<GalleryFilter>("All");
   const visible = useMemo(
     () => filter === "All" ? GALLERY : GALLERY.filter((g) => g.category === filter),
     [filter]
