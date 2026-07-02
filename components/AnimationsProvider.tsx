@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
+import { TIMING, EASING, ANIM_SELECTORS } from "@/lib/constants";
 
 gsap.registerPlugin(ScrollTrigger);
 // fastScrollEnd/ignoreMobileResize exist at runtime but aren't in the 3.x typedefs yet
@@ -17,12 +18,12 @@ export default function AnimationsProvider({
   children: ReactNode;
 }) {
   useEffect(() => {
-    const wrapper = document.getElementById("lenis-wrapper") as HTMLElement;
+    const wrapper = document.getElementById(ANIM_SELECTORS.LENIS_WRAPPER) as HTMLElement;
 
     const lenis = new Lenis({
       wrapper,
       content: wrapper,
-      duration: 0.85,
+      duration: TIMING.LENIS_DURATION,
       easing: (t: number) => 1 - Math.pow(1 - t, 3),
       smoothWheel: true,
       wheelMultiplier: 1.1,
@@ -53,23 +54,19 @@ export default function AnimationsProvider({
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        lenis.scrollTo(target as HTMLElement, { offset: -20, duration: 0.9 });
+        lenis.scrollTo(target as HTMLElement, { offset: TIMING.SCROLL_OFFSET, duration: TIMING.ANCHOR_SCROLL_DURATION });
       }
     };
     document.addEventListener("click", onAnchorClick);
 
-    const ease = "power3.out";
+    const ease = EASING.DEFAULT;
 
     //  INTRO overlay
-    const intro = document.querySelector<HTMLElement>("[data-intro]");
-    const introSpacer = document.querySelector<HTMLElement>(
-      "[data-intro-spacer]",
-    );
-    const introLines = gsap.utils.toArray<HTMLElement>("[data-intro-line]");
-    const introEyebrow = document.querySelector<HTMLElement>(
-      "[data-intro-eyebrow]",
-    );
-    const introCue = document.querySelector<HTMLElement>("[data-intro-cue]");
+    const intro = document.querySelector<HTMLElement>(ANIM_SELECTORS.INTRO);
+    const introSpacer = document.querySelector<HTMLElement>(ANIM_SELECTORS.INTRO_SPACER);
+    const introLines = gsap.utils.toArray<HTMLElement>(ANIM_SELECTORS.INTRO_LINE);
+    const introEyebrow = document.querySelector<HTMLElement>(ANIM_SELECTORS.INTRO_EYEBROW);
+    const introCue = document.querySelector<HTMLElement>(ANIM_SELECTORS.INTRO_CUE);
 
     if (intro && introSpacer) {
       gsap.set(introLines, {
@@ -81,22 +78,22 @@ export default function AnimationsProvider({
       gsap.set(introEyebrow, { opacity: 0, y: 20 });
       gsap.set(introCue, { opacity: 0, y: 20 });
 
-      const introIn = gsap.timeline({ delay: 0.25 });
+      const introIn = gsap.timeline({ delay: TIMING.INTRO_DELAY });
       introIn
-        .to(introEyebrow, { opacity: 1, y: 0, duration: 1.0, ease }, 0)
+        .to(introEyebrow, { opacity: 1, y: 0, duration: TIMING.INTRO_EYEBROW_DURATION, ease }, 0)
         .to(
           introLines,
           {
             yPercent: 0,
             rotationX: 0,
             opacity: 1,
-            duration: 1.4,
-            ease: "expo.out",
+            duration: TIMING.INTRO_LINE_DURATION,
+            ease: EASING.EXPO_OUT,
             stagger: 0.15,
           },
           0.15,
         )
-        .to(introCue, { opacity: 1, y: 0, duration: 1.0, ease }, 1.1);
+        .to(introCue, { opacity: 1, y: 0, duration: TIMING.INTRO_CUE_DURATION, ease }, 1.1);
 
       gsap
         .timeline({
@@ -135,7 +132,7 @@ export default function AnimationsProvider({
     }
 
     //  HERO 3D line reveal
-    const heroLines = gsap.utils.toArray<HTMLElement>("[data-hero-line]");
+    const heroLines = gsap.utils.toArray<HTMLElement>(ANIM_SELECTORS.HERO_LINE);
     gsap.set(heroLines, {
       yPercent: 110,
       rotationX: -75,
@@ -146,18 +143,18 @@ export default function AnimationsProvider({
       yPercent: 0,
       rotationX: 0,
       opacity: 1,
-      duration: 0.9,
-      ease: "expo.out",
+      duration: TIMING.HERO_LINE_DURATION,
+      ease: EASING.EXPO_OUT,
       stagger: 0.09,
       scrollTrigger: {
-        trigger: ".hero",
+        trigger: ANIM_SELECTORS.HERO_SECTION,
         start: "top 60%",
         toggleActions: "play none none none",
       },
     });
 
     //  Generic reveal-y
-    gsap.utils.toArray<HTMLElement>("[data-reveal-y]").forEach((el) => {
+    gsap.utils.toArray<HTMLElement>(ANIM_SELECTORS.REVEAL_Y).forEach((el) => {
       gsap.fromTo(
         el,
         {
@@ -183,7 +180,7 @@ export default function AnimationsProvider({
     });
 
     //  Hero parallax bg
-    const heroBg = document.querySelector<HTMLElement>("[data-parallax]");
+    const heroBg = document.querySelector<HTMLElement>(ANIM_SELECTORS.PARALLAX);
     if (heroBg) {
       const intensity = parseFloat(heroBg.dataset.parallax ?? "0.2");
       gsap.to(heroBg, {
@@ -200,16 +197,16 @@ export default function AnimationsProvider({
     }
 
     //  Hero card 3D tilt
-    const heroCard = document.querySelector<HTMLElement>(".hero-card");
-    const heroSection = document.querySelector<HTMLElement>(".hero");
+    const heroCard = document.querySelector<HTMLElement>(ANIM_SELECTORS.HERO_CARD);
+    const heroSection = document.querySelector<HTMLElement>(ANIM_SELECTORS.HERO_SECTION);
     if (heroCard && heroSection) {
       gsap.set(heroCard, {
         transformPerspective: 1200,
         transformStyle: "preserve-3d",
         force3D: true,
       });
-      const tiltY = gsap.quickTo(heroCard, "rotationY", { duration: 0.4, ease });
-      const tiltX = gsap.quickTo(heroCard, "rotationX", { duration: 0.4, ease });
+      const tiltY = gsap.quickTo(heroCard, "rotationY", { duration: TIMING.HERO_CARD_TILT_DURATION, ease });
+      const tiltX = gsap.quickTo(heroCard, "rotationX", { duration: TIMING.HERO_CARD_TILT_DURATION, ease });
       heroSection.addEventListener("mousemove", (e: MouseEvent) => {
         const r = heroSection.getBoundingClientRect();
         tiltY(((e.clientX - r.left) / r.width) * 12 - 6);
@@ -222,10 +219,10 @@ export default function AnimationsProvider({
     }
 
     //  Marquee
-    const marqueeTrack = document.querySelector<HTMLElement>("[data-marquee]");
+    const marqueeTrack = document.querySelector<HTMLElement>(ANIM_SELECTORS.MARQUEE);
     if (marqueeTrack) {
       const w = marqueeTrack.scrollWidth / 3;
-      gsap.to(marqueeTrack, { x: -w, ease: "none", duration: 30, repeat: -1 });
+      gsap.to(marqueeTrack, { x: -w, ease: EASING.NONE, duration: TIMING.MARQUEE_DURATION, repeat: -1 });
       let snapBack: gsap.core.Tween | null = null;
       ScrollTrigger.create({
         onUpdate: (self) => {
@@ -251,7 +248,7 @@ export default function AnimationsProvider({
     }
 
     //  Service rows
-    gsap.utils.toArray<HTMLElement>("[data-svc-row]").forEach((row) => {
+    gsap.utils.toArray<HTMLElement>(ANIM_SELECTORS.SVC_ROW).forEach((row) => {
       gsap.fromTo(
         row,
         {
@@ -275,13 +272,9 @@ export default function AnimationsProvider({
     });
 
     //  Owner stage 3D
-    const ownerStage =
-      document.querySelector<HTMLElement>("[data-owner-stage]");
+    const ownerStage = document.querySelector<HTMLElement>(ANIM_SELECTORS.OWNER_STAGE);
     if (ownerStage) {
-      const cards = gsap.utils.toArray<HTMLElement>(
-        "[data-owner-card]",
-        ownerStage,
-      );
+      const cards = gsap.utils.toArray<HTMLElement>(ANIM_SELECTORS.OWNER_CARD, ownerStage);
       gsap.set(cards, {
         transformPerspective: 1600,
         transformStyle: "preserve-3d",
@@ -344,7 +337,7 @@ export default function AnimationsProvider({
     }
 
     //  Gallery tiles 3D
-    gsap.utils.toArray<HTMLElement>("[data-tile]").forEach((tile, i) => {
+    gsap.utils.toArray<HTMLElement>(ANIM_SELECTORS.TILE).forEach((tile, i) => {
       gsap.set(tile, {
         transformPerspective: 1600,
         transformStyle: "preserve-3d",
@@ -401,7 +394,7 @@ export default function AnimationsProvider({
     });
 
     //  Pull quote word-by-word
-    const words = gsap.utils.toArray<HTMLElement>("[data-pull-word]");
+    const words = gsap.utils.toArray<HTMLElement>(ANIM_SELECTORS.PULL_WORD);
     if (words.length) {
       gsap.set(words, {
         opacity: 0.1,
@@ -412,10 +405,10 @@ export default function AnimationsProvider({
       gsap.to(words, {
         opacity: 1,
         rotationX: 0,
-        stagger: 0.06,
-        ease: "power2.out",
+        stagger: TIMING.PULL_QUOTE_STAGGER,
+        ease: EASING.POWER2_OUT,
         scrollTrigger: {
-          trigger: ".pull",
+          trigger: ANIM_SELECTORS.PULL_SECTION,
           start: "top 75%",
           end: "center 45%",
           scrub: true,
@@ -424,24 +417,24 @@ export default function AnimationsProvider({
     }
 
     //  Hero meta fade on scroll
-    gsap.to(".hero-meta", {
+    gsap.to(ANIM_SELECTORS.HERO_META, {
       opacity: 0.15,
       y: -60,
-      ease: "none",
+      ease: EASING.NONE,
       force3D: true,
       scrollTrigger: {
-        trigger: ".hero",
+        trigger: ANIM_SELECTORS.HERO_SECTION,
         start: "center top",
         end: "bottom top",
         scrub: 0.6,
       },
     });
-    gsap.to(".hero-bg", {
+    gsap.to(ANIM_SELECTORS.HERO_BG, {
       scale: 1.08,
-      ease: "none",
+      ease: EASING.NONE,
       force3D: true,
       scrollTrigger: {
-        trigger: ".hero",
+        trigger: ANIM_SELECTORS.HERO_SECTION,
         start: "top top",
         end: "bottom top",
         scrub: 0.6,
@@ -449,7 +442,7 @@ export default function AnimationsProvider({
     });
 
     //  About stats roll-in
-    gsap.utils.toArray<HTMLElement>(".about .stat").forEach((s, i) => {
+    gsap.utils.toArray<HTMLElement>(ANIM_SELECTORS.ABOUT_STAT).forEach((s, i) => {
       gsap.fromTo(
         s,
         { opacity: 0, rotationY: -30, x: -30, transformPerspective: 1200 },
