@@ -4,7 +4,7 @@ const QUOTE =
 export default function PullQuote() {
   const words = QUOTE.split(" ");
   return (
-    <section className="pull" data-screen-label="06 Quote">
+    <section className="pull" data-screen-label="06 Quote" aria-label="Studio philosophy">
       <blockquote>
         {words.map((w, i) => (
           <span className="word" data-pull-word key={i}>
