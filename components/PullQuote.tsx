@@ -1,3 +1,5 @@
+import { STUDIO_INFO } from "@/lib/studio-data";
+
 const QUOTE =
   "We don't do quick. We don't do trends. We do the haircut you'll keep you looking stunning.";
 
@@ -12,7 +14,7 @@ export default function PullQuote() {
           </span>
         ))}
       </blockquote>
-      <cite>Kofi Osei, founder · Labone, Accra</cite>
+      <cite>{STUDIO_INFO.stylist}, founder · {STUDIO_INFO.address.neighborhood}, {STUDIO_INFO.address.city}</cite>
     </section>
   );
 }
