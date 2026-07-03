@@ -36,13 +36,15 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="hero-dots">
+      <div className="hero-dots" role="group" aria-label="Slideshow navigation">
         {HERO_SLIDES.map((_, i) => (
           <button
             key={i}
             className={i === slide ? "active" : ""}
             onClick={() => setSlide(i)}
-            aria-label={`Slide ${i + 1}`}
+            aria-label={`Go to slide ${i + 1} of ${HERO_SLIDES.length}`}
+            aria-current={i === slide ? "true" : undefined}
+            style={{ minWidth: 44, minHeight: 44 }}
           />
         ))}
       </div>
