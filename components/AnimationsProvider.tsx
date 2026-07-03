@@ -233,15 +233,15 @@ export default function AnimationsProvider({
           gsap.to(marqueeTrack, {
             skewX: skew,
             rotationY: rot,
-            duration: 0.4,
+            duration: TIMING.MARQUEE_SKEW_DURATION,
             ease,
           });
           snapBack = gsap.to(marqueeTrack, {
             skewX: 0,
             rotationY: 0,
-            duration: 0.7,
+            duration: TIMING.MARQUEE_SNAP_DURATION,
             ease,
-            delay: 0.2,
+            delay: TIMING.MARQUEE_SNAP_DELAY,
           });
         },
       });
