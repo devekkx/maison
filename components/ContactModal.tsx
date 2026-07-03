@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect, useActionState } from "react";
 import { SERVICES } from "@/lib/data";
 import { STUDIO_INFO } from "@/lib/studio-data";
-import { submitContact, type ContactFormState } from "@/app/actions/contact";
+import { useContactForm } from "@/hooks/useContactForm";
 import {
   Dialog,
   DialogContent,
@@ -21,8 +20,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-const INITIAL_STATE: ContactFormState = { status: "idle" };
 
 type InputFieldDef = {
   kind: "input";
@@ -58,31 +55,14 @@ type FieldDef = InputFieldDef | SelectFieldDef | TextareaFieldDef;
 const FIELDS: FieldDef[] = [
   { kind: "input", name: "name", id: "m-name", label: "Full name", placeholder: "Imani A.", autoComplete: "name", required: true },
   { kind: "input", name: "email", id: "m-email", label: "Email", type: "email", placeholder: "you@example.com", autoComplete: "email", required: true },
-  { kind: "input", name: "phone", id: "m-phone", label: "Phone", placeholder: "+1 (212) 000 0000", autoComplete: "tel" },
+  { kind: "input", name: "phone", id: "m-phone", label: "Phone", type: "tel", placeholder: "+233 20 000 0000", autoComplete: "tel" },
   { kind: "input", name: "date", id: "m-date", label: "Preferred date", type: "date" },
   { kind: "select", name: "service", id: "m-service", label: "Service", className: "full" },
   { kind: "textarea", name: "notes", id: "m-notes", label: "Notes (hair length, references, anything I should know)", placeholder: "Currently shoulder-length, last colored in February…", className: "full" },
 ];
 
 export default function ContactModal() {
-  const [open, setOpen] = useState(false);
-  const [servicePreset, setServicePreset] = useState("");
-  const [selectValue, setSelectValue] = useState("");
-  const [state, action, pending] = useActionState(submitContact, INITIAL_STATE);
-
-  useEffect(() => {
-    const onOpen = (e: Event) => {
-      const detail = (e as CustomEvent<{ service?: string }>).detail;
-      const preset = detail?.service ?? "";
-      setServicePreset(preset);
-      setSelectValue(preset || `${SERVICES[0].name} ${SERVICES[0].italic}`);
-      setOpen(true);
-    };
-    window.addEventListener("open-contact", onOpen);
-    return () => window.removeEventListener("open-contact", onOpen);
-  }, []);
-
-  const errors = state.status === "error" ? state.errors : ({} as Record<string, string>);
+  const { open, setOpen, selectValue, setSelectValue, state, action, pending, errors } = useContactForm();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -93,7 +73,7 @@ export default function ContactModal() {
         </DialogDescription>
 
         <aside className="modal-aside">
-          <div className="eyebrow eyebrow-warm">Maison Noire · Reservations</div>
+          <div className="eyebrow eyebrow-warm">{STUDIO_INFO.name} · Reservations</div>
           <div>
             <h3>Reserve a <em>chair.</em></h3>
             <p>
@@ -130,68 +110,78 @@ export default function ContactModal() {
               </div>
 
               {state.status === "failure" && (
-                <p className="form-error-msg">{state.message}</p>
+                <p className="form-error-msg" role="alert">{state.message}</p>
               )}
 
               <div className="form-grid">
-                {FIELDS.map((field) => (
-                  <div key={field.name} className={`field${field.className ? ` ${field.className}` : ""}`}>
-                    <Label htmlFor={field.id}>{field.label}</Label>
+                {FIELDS.map((field) => {
+                  const errorId = `${field.id}-error`;
+                  const hasError = !!errors[field.name];
+                  return (
+                    <div key={field.name} className={`field${field.className ? ` ${field.className}` : ""}`}>
+                      <Label htmlFor={field.id}>{field.label}</Label>
 
-                    {field.kind === "input" && (
-                      <Input
-                        id={field.id}
-                        name={field.name}
-                        type={field.type}
-                        placeholder={field.placeholder}
-                        autoComplete={field.autoComplete}
-                        required={field.required}
-                      />
-                    )}
+                      {field.kind === "input" && (
+                        <Input
+                          id={field.id}
+                          name={field.name}
+                          type={field.type}
+                          placeholder={field.placeholder}
+                          autoComplete={field.autoComplete}
+                          required={field.required}
+                          aria-invalid={hasError}
+                          aria-describedby={hasError ? errorId : undefined}
+                        />
+                      )}
 
-                    {field.kind === "select" && (
-                      <>
-                        <input type="hidden" name={field.name} value={selectValue} />
-                        <Select
-                          value={selectValue}
-                          onValueChange={setSelectValue}
-                          defaultValue={servicePreset || `${SERVICES[0].name} ${SERVICES[0].italic}`}
-                        >
-                          <SelectTrigger id={field.id}>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {SERVICES.map((s) => (
-                              <SelectItem key={s.id} value={`${s.name} ${s.italic}`}>
-                                {s.name} {s.italic}
+                      {field.kind === "select" && (
+                        <>
+                          <input type="hidden" name={field.name} value={selectValue} />
+                          <Select
+                            value={selectValue}
+                            onValueChange={setSelectValue}
+                            defaultValue={`${SERVICES[0].name} ${SERVICES[0].italic}`}
+                          >
+                            <SelectTrigger id={field.id} aria-invalid={hasError} aria-describedby={hasError ? errorId : undefined}>
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {SERVICES.map((s) => (
+                                <SelectItem key={s.id} value={`${s.name} ${s.italic}`}>
+                                  {s.name} {s.italic}
+                                </SelectItem>
+                              ))}
+                              <SelectItem value="Not sure, I'd like a consultation">
+                                Not sure, I&apos;d like a consultation
                               </SelectItem>
-                            ))}
-                            <SelectItem value="Not sure, I'd like a consultation">
-                              Not sure, I&apos;d like a consultation
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </>
-                    )}
+                            </SelectContent>
+                          </Select>
+                        </>
+                      )}
 
-                    {field.kind === "textarea" && (
-                      <Textarea
-                        id={field.id}
-                        name={field.name}
-                        placeholder={field.placeholder}
-                      />
-                    )}
+                      {field.kind === "textarea" && (
+                        <Textarea
+                          id={field.id}
+                          name={field.name}
+                          placeholder={field.placeholder}
+                          aria-invalid={hasError}
+                          aria-describedby={hasError ? errorId : undefined}
+                        />
+                      )}
 
-                    {errors[field.name] && (
-                      <span className="field-error">{errors[field.name]}</span>
-                    )}
-                  </div>
-                ))}
+                      {hasError && (
+                        <span id={errorId} className="field-error" role="alert">
+                          {errors[field.name]}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
               <div className="form-actions">
                 <small>I&apos;ll respond within 24 hours · personally</small>
-                <Button type="submit" className="btn primary" disabled={pending}>
+                <Button type="submit" className="btn primary" disabled={pending} aria-busy={pending}>
                   {pending ? "Sending…" : "Send request →"}
                 </Button>
               </div>
