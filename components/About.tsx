@@ -24,22 +24,25 @@ export default function About() {
           filter coffee, about your week, your outdooring, the way you sleep on
           it, before any scissors come out.
         </p>
-        <div className="stats">
+        <dl className="stats">
           <div className="stat" data-reveal-y>
-            <div className="n">
-              11<em>·</em>yrs
-            </div>
+            <dt className="sr-only">Years open</dt>
+            <dd className="n">
+              12<em>·</em>yrs
+            </dd>
             <small>Open since 2014</small>
           </div>
           <div className="stat" data-reveal-y>
-            <div className="n">01</div>
+            <dt className="sr-only">Number of stylists</dt>
+            <dd className="n">01</dd>
             <small>Stylist · sole hands</small>
           </div>
           <div className="stat" data-reveal-y>
-            <div className="n">2,840</div>
+            <dt className="sr-only">Total clients served</dt>
+            <dd className="n">3,100</dd>
             <small>Heads, &amp; counting</small>
           </div>
-        </div>
+        </dl>
       </div>
     </section>
   );
