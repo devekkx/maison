@@ -51,7 +51,7 @@ export default function Hero() {
 
       <div className="hero-meta">
         <div className="eyebrow" data-reveal-y>
-          Salon · Atelier · Est. 2014 · Accra
+          {STUDIO_INFO.tagline} · Est. {STUDIO_INFO.established} · {STUDIO_INFO.city}
         </div>
         <h1>
           <span className="stack">
