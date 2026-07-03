@@ -450,7 +450,7 @@ export default function AnimationsProvider({
           opacity: 1,
           rotationY: 0,
           x: 0,
-          duration: 1.0,
+          duration: TIMING.STAT_DURATION,
           ease,
           delay: i * 0.1,
           scrollTrigger: { trigger: s, start: "top 90%" },
