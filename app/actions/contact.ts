@@ -3,6 +3,8 @@
 import { Resend } from "resend";
 import { z } from "zod";
 
+const RESEND_RETRY_LIMIT = 2;
+
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required").max(100, "Name is too long"),
   email: z.string().email("Please enter a valid email address").max(200),
@@ -81,21 +83,28 @@ export async function submitContact(
     </table>
   `;
 
-  const { error } = await resend.emails.send({
-    from: fromEmail,
-    to: toEmail,
-    replyTo: email,
-    subject: `Booking request from ${name} - ${service}`,
-    text: textBody,
-    html: htmlBody,
-  });
+  let lastError: { name: string } | null = null;
+  for (let attempt = 0; attempt <= RESEND_RETRY_LIMIT; attempt++) {
+    const { error } = await resend.emails.send({
+      from: fromEmail,
+      to: toEmail,
+      replyTo: email,
+      subject: `Booking request from ${name} - ${service}`,
+      text: textBody,
+      html: htmlBody,
+    });
 
-  if (error) {
-    const msg = error.name === "validation_error"
-      ? "Your request could not be processed. Please check your details and try again."
-      : "Something went wrong on our end. Please try again in a moment, or email us directly.";
-    return { status: "failure", message: msg };
+    if (!error) {
+      return { status: "success", email };
+    }
+
+    lastError = error;
+    if (error.name === "validation_error") break;
   }
 
-  return { status: "success", email };
+  const msg = lastError?.name === "validation_error"
+    ? "Your request could not be processed. Please check your details and try again."
+    : "Something went wrong on our end. Please try again in a moment, or email us directly.";
+  return { status: "failure", message: msg };
+
 }
