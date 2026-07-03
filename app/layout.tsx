@@ -41,11 +41,18 @@ export const metadata: Metadata = {
   title: "Maison Noire · Salon & Studio",
   description:
     "A studio of one. By appointment, no walk-ins. Cuts, color, braids and texture, taken slowly, in two-hour sittings. Labone, Accra.",
+  keywords: ["hair salon", "barbershop", "braids", "accra", "ghana", "labone", "Kofi Osei"],
   openGraph: {
     title: "Maison Noire · Salon & Studio",
     description:
       "Editorial hair studio. One chair, one client. Labone, Accra.",
     type: "website",
+    locale: "en_GH",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Maison Noire · Salon & Studio",
+    description: "Editorial hair studio. One chair, one client. Labone, Accra.",
   },
 };
 
