@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { OWNER } from "@/lib/data";
+import { STUDIO_INFO } from "@/lib/studio-data";
 
 export default function Owner() {
   return (
@@ -11,7 +12,7 @@ export default function Owner() {
           One <em>pair</em> of hands.
         </h2>
         <div className="meta" data-reveal-y>
-          The studio is run, and
+          {STUDIO_INFO.name} is run, and
           <br />
           worked, by a single stylist.
           <br />
