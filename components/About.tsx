@@ -1,3 +1,5 @@
+import { STUDIO_INFO } from "@/lib/studio-data";
+
 export default function About() {
   return (
     <section className="about" id="about" data-screen-label="02 About">
@@ -13,8 +15,8 @@ export default function About() {
       </div>
       <div className="r">
         <p data-reveal-y>
-          Maison Noire was opened in 2014 by Kofi Osei in a former tailor&apos;s
-          shop on Switchback Road, Labone. The brief has not changed since: hair
+          {STUDIO_INFO.name} was opened in {STUDIO_INFO.established} by {STUDIO_INFO.stylist} in a former tailor&apos;s
+          shop on Switchback Road, {STUDIO_INFO.address.neighborhood}. The brief has not changed since: hair
           that looks the way you actually live, not the way a chair looks under
           studio light.
         </p>
