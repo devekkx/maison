@@ -181,9 +181,12 @@ export default function ContactModal() {
 
               <div className="form-actions">
                 <small>I&apos;ll respond within 24 hours · personally</small>
-                <Button type="submit" className="btn primary" disabled={pending} aria-busy={pending}>
+                <Button type="submit" className="btn primary" disabled={pending} aria-busy={pending} aria-live="polite">
                   {pending ? "Sending…" : "Send request →"}
                 </Button>
+              </div>
+              <div aria-live="polite" aria-atomic="true" className="sr-only">
+                {pending ? "Sending your booking request, please wait." : ""}
               </div>
             </form>
           )}
