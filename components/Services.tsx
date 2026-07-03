@@ -1,8 +1,7 @@
 "use client";
 
 import { SERVICES } from "@/lib/data";
-import { openContact } from "@/lib/contact";
-import { Button } from "@/components/ui/button";
+import ServiceRow from "@/components/ServiceRow";
 
 export default function Services() {
   return (
@@ -26,29 +25,7 @@ export default function Services() {
       </div>
       <div className="svc-list">
         {SERVICES.map((s) => (
-          <div
-            className="svc"
-            key={s.id}
-            data-svc-row
-            onClick={() => openContact({ service: `${s.name} ${s.italic}` })}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                openContact({ service: `${s.name} ${s.italic}` });
-              }
-            }}
-          >
-            <div className="num">{s.num}</div>
-            <div className="name">
-              {s.name} <em>{s.italic}</em>
-            </div>
-            <div className="desc">{s.desc}</div>
-            <div className="price">
-              {s.price}
-              <small>{s.dur}</small>
-            </div>
-          </div>
+          <ServiceRow key={s.id} service={s} />
         ))}
       </div>
     </section>
