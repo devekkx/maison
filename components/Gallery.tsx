@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Image from "next/image";
 import { GALLERY, GALLERY_FILTERS, type GalleryFilter } from "@/lib/data";
+import GalleryTile from "@/components/GalleryTile";
 
 export default function Gallery() {
   const [filter, setFilter] = useState<GalleryFilter>("All");
@@ -17,12 +17,13 @@ export default function Gallery() {
         <h2 data-reveal-y>
           Recent <em>sittings.</em>
         </h2>
-        <div className="filter" data-reveal-y>
+        <div className="filter" data-reveal-y role="group" aria-label="Filter gallery by category">
           {GALLERY_FILTERS.map((f) => (
             <button
               key={f}
               className={`chip ${filter === f ? "active" : ""}`}
               onClick={() => setFilter(f)}
+              aria-pressed={filter === f}
             >
               {f}
             </button>
@@ -32,16 +33,7 @@ export default function Gallery() {
 
       <div className="gallery-grid">
         {visible.map((g, i) => (
-          <figure className={`tile ${g.cls}`} key={i} data-tile>
-            <Image
-              src={g.src}
-              alt={g.cap}
-              fill
-              sizes="(max-width: 980px) 50vw, 25vw"
-              style={{ objectFit: "cover" }}
-            />
-            <figcaption className="cap">{g.cap}</figcaption>
-          </figure>
+          <GalleryTile key={`${g.cls}-${i}`} item={g} index={i} />
         ))}
       </div>
     </section>
