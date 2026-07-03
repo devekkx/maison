@@ -28,9 +28,9 @@ export default function Nav() {
           Maison Noire
         </a>
 
-        <ul>
+        <ul role="list">
           {NAV_LINKS.map(({ href, label }) => (
-            <li key={href}>
+            <li key={href} role="listitem">
               <a href={href}>{label}</a>
             </li>
           ))}
