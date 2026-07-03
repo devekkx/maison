@@ -26,19 +26,13 @@ export default function EndCTA() {
           <div className="col" data-reveal-y>
             <h4>Reservations</h4>
             <p>
-              <a
-                onClick={(e) => {
-                  e.preventDefault();
-                  openContact();
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") openContact();
-                }}
+              <button
+                type="button"
+                className="link-button"
+                onClick={() => openContact()}
               >
                 {STUDIO_INFO.contact.email}
-              </a>
+              </button>
               <br />
               {STUDIO_INFO.contact.phone}
               <br />
