@@ -18,7 +18,8 @@ export default function AnimationsProvider({
   children: ReactNode;
 }) {
   useEffect(() => {
-    const wrapper = document.getElementById(ANIM_SELECTORS.LENIS_WRAPPER) as HTMLElement;
+    const wrapper = document.getElementById(ANIM_SELECTORS.LENIS_WRAPPER);
+    if (!wrapper) return;
 
     const lenis = new Lenis({
       wrapper,
