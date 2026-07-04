@@ -13,6 +13,7 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-cormorant",
   display: "swap",
+  preload: true,
 });
 
 const instrumentSerif = Instrument_Serif({
