@@ -154,7 +154,7 @@ export default function AnimationsProvider({
       },
     });
 
-    //  Generic reveal-y
+    //  Generic reveal-y — fromTo avoids re-animating on back-scroll
     gsap.utils.toArray<HTMLElement>(ANIM_SELECTORS.REVEAL_Y).forEach((el) => {
       gsap.fromTo(
         el,
@@ -169,7 +169,7 @@ export default function AnimationsProvider({
           opacity: 1,
           y: 0,
           rotationX: 0,
-          duration: 1.1,
+          duration: TIMING.REVEAL_Y_DURATION,
           ease,
           scrollTrigger: {
             trigger: el,
