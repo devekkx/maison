@@ -1,5 +1,7 @@
+/** Union of all valid service IDs — matches the `id` field on each Service entry. */
 export type ServiceId = "cut" | "col" | "brd" | "tre" | "brw" | "brd2";
 
+/** All gallery filter categories (excludes "All" which is a filter-only value). */
 export type GalleryCategory = "Cut" | "Braids" | "Color" | "Brows";
 
 export interface Service {
