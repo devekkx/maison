@@ -10,6 +10,10 @@ interface State {
   hasError: boolean;
 }
 
+/**
+ * Error boundary wrapping the Gallery section.
+ * Catches render errors and shows a graceful fallback instead of a blank screen.
+ */
 export default class GalleryErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
