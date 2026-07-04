@@ -5,7 +5,9 @@ import Image from "next/image";
 import { type GalleryItem } from "@/lib/data";
 
 interface GalleryTileProps {
+  /** Gallery item data from the GALLERY array in lib/data.ts. */
   item: GalleryItem;
+  /** Position index used as a fallback key. */
   index: number;
 }
 

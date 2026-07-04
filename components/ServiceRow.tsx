@@ -4,6 +4,7 @@ import { type Service } from "@/lib/data";
 import { openContact } from "@/lib/contact";
 
 interface ServiceRowProps {
+  /** The service to render — sourced from the SERVICES array in lib/data.ts. */
   service: Service;
 }
 
