@@ -1,3 +1,7 @@
+/**
+ * Single source of truth for all studio metadata.
+ * Import from here instead of hardcoding strings in components.
+ */
 export const STUDIO_INFO = {
   name: "Maison Noire",
   slug: "NN",
