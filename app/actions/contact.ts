@@ -5,6 +5,10 @@ import { z } from "zod";
 
 const RESEND_RETRY_LIMIT = 2;
 
+/**
+ * Validates booking request form data submitted via the contact modal.
+ * Phone accepts international formats; empty string passes optional check.
+ */
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required").max(100, "Name is too long"),
   email: z.string().email("Please enter a valid email address").max(200),
