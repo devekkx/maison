@@ -30,6 +30,14 @@ const HOVER_SEL =
   "a, button, .chip, .tile, .svc, .artist, .owner-card, .hero-dots button, input, select, textarea";
 
 export default function CustomCursor() {
+  const isCoarse = typeof window !== "undefined" && matchMedia("(pointer: coarse)").matches;
+
+  if (isCoarse) return null;
+
+  return <CustomCursorInner />;
+}
+
+function CustomCursorInner() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
@@ -41,13 +49,6 @@ export default function CustomCursor() {
     const icon = iconRef.current;
     const label = labelRef.current;
     if (!dot || !ring || !icon) return;
-
-    if (matchMedia("(pointer: coarse)").matches) {
-      [dot, ring, icon, label].forEach((el) => {
-        if (el) el.style.display = "none";
-      });
-      return;
-    }
 
     document.documentElement.classList.add("has-custom-cursor");
 
