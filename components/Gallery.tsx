@@ -31,7 +31,7 @@ export default function Gallery() {
         </div>
       </div>
 
-      <div className="gallery-grid">
+      <div className="gallery-grid" aria-live="polite" aria-label="Gallery images">
         {visible.map((g, i) => (
           <GalleryTile key={`${g.cls}-${i}`} item={g} index={i} />
         ))}
