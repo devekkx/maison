@@ -31,6 +31,9 @@ export default function Hero() {
               sizes="100vw"
               priority={i === 0}
               style={{ objectFit: "cover" }}
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).style.display = "none";
+              }}
             />
           </div>
         ))}
