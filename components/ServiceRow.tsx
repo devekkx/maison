@@ -15,6 +15,7 @@ export default function ServiceRow({ service: s }: ServiceRowProps) {
       type="button"
       className="svc"
       data-svc-row
+      role="listitem"
       onClick={() => openContact({ service: label })}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {

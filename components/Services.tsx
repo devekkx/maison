@@ -23,7 +23,7 @@ export default function Services() {
           stronger.
         </p>
       </div>
-      <div className="svc-list">
+      <div className="svc-list" role="list" aria-label="Available services">
         {SERVICES.map((s) => (
           <ServiceRow key={s.id} service={s} />
         ))}
