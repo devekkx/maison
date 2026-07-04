@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { NAV_LINKS } from "@/lib/data";
 import { openContact } from "@/lib/contact";
 import { Button } from "@/components/ui/button";
@@ -8,11 +8,12 @@ import { Button } from "@/components/ui/button";
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const close = useCallback(() => setMenuOpen(false), []);
+
   useEffect(() => {
-    const close = () => setMenuOpen(false);
     window.addEventListener("hashchange", close);
     return () => window.removeEventListener("hashchange", close);
-  }, []);
+  }, [close]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
