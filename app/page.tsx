@@ -7,6 +7,7 @@ import About from "@/components/About";
 import Services from "@/components/Services";
 import Owner from "@/components/Owner";
 import Gallery from "@/components/Gallery";
+import GalleryErrorBoundary from "@/components/GalleryErrorBoundary";
 import PullQuote from "@/components/PullQuote";
 import EndCTA from "@/components/EndCTA";
 import ContactModal from "@/components/ContactModal";
@@ -21,13 +22,15 @@ export default function Home() {
 
         <IntroOverlay />
         <Nav />
-        <main>
+        <main id="main">
           <Hero />
           <Marquee />
           <About />
           <Services />
           <Owner />
-          <Gallery />
+          <GalleryErrorBoundary>
+            <Gallery />
+          </GalleryErrorBoundary>
           <PullQuote />
           <EndCTA />
         </main>
