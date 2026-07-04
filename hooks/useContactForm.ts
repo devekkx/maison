@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useActionState } from "react";
+import { useState, useCallback, useEffect, useActionState } from "react";
 import { SERVICES } from "@/lib/data";
 import { submitContact, type ContactFormState } from "@/app/actions/contact";
 
@@ -23,17 +23,18 @@ export function useContactForm(): UseContactFormReturn {
   const [selectValue, setSelectValue] = useState("");
   const [state, action, pending] = useActionState(submitContact, INITIAL_STATE);
 
+  const onOpen = useCallback((e: Event) => {
+    const detail = (e as CustomEvent<{ service?: string }>).detail;
+    const preset = detail?.service ?? "";
+    setServicePreset(preset);
+    setSelectValue(preset || `${SERVICES[0].name} ${SERVICES[0].italic}`);
+    setOpen(true);
+  }, []);
+
   useEffect(() => {
-    const onOpen = (e: Event) => {
-      const detail = (e as CustomEvent<{ service?: string }>).detail;
-      const preset = detail?.service ?? "";
-      setServicePreset(preset);
-      setSelectValue(preset || `${SERVICES[0].name} ${SERVICES[0].italic}`);
-      setOpen(true);
-    };
     window.addEventListener("open-contact", onOpen);
     return () => window.removeEventListener("open-contact", onOpen);
-  }, []);
+  }, [onOpen]);
 
   void servicePreset;
 
