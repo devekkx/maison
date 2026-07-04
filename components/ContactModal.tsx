@@ -55,7 +55,7 @@ type FieldDef = InputFieldDef | SelectFieldDef | TextareaFieldDef;
 const FIELDS: FieldDef[] = [
   { kind: "input", name: "name", id: "m-name", label: "Full name", placeholder: "Imani A.", autoComplete: "name", required: true },
   { kind: "input", name: "email", id: "m-email", label: "Email", type: "email", placeholder: "you@example.com", autoComplete: "email", required: true },
-  { kind: "input", name: "phone", id: "m-phone", label: "Phone", type: "tel", placeholder: "+233 20 000 0000", autoComplete: "tel" },
+  { kind: "input", name: "phone", id: "m-phone", label: "Phone (optional)", type: "tel", placeholder: "+233 20 000 0000", autoComplete: "tel" },
   { kind: "input", name: "date", id: "m-date", label: "Preferred date", type: "date" },
   { kind: "select", name: "service", id: "m-service", label: "Service", className: "full" },
   { kind: "textarea", name: "notes", id: "m-notes", label: "Notes (hair length, references, anything I should know)", placeholder: "Currently shoulder-length, last colored in February…", className: "full" },
