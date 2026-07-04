@@ -197,7 +197,7 @@ export default function AnimationsProvider({
       });
     }
 
-    //  Hero card 3D tilt
+    //  Hero card 3D tilt — queries cached once at setup time for the RAF callbacks
     const heroCard = document.querySelector<HTMLElement>(ANIM_SELECTORS.HERO_CARD);
     const heroSection = document.querySelector<HTMLElement>(ANIM_SELECTORS.HERO_SECTION);
     if (heroCard && heroSection) {
@@ -272,7 +272,7 @@ export default function AnimationsProvider({
       );
     });
 
-    //  Owner stage 3D
+    //  Owner stage 3D — cards array cached once, used in two event listeners
     const ownerStage = document.querySelector<HTMLElement>(ANIM_SELECTORS.OWNER_STAGE);
     if (ownerStage) {
       const cards = gsap.utils.toArray<HTMLElement>(ANIM_SELECTORS.OWNER_CARD, ownerStage);
