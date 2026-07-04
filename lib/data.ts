@@ -164,6 +164,7 @@ export const GALLERY_FILTERS = ["All", "Cut", "Braids", "Color", "Brows"] as con
 export type GalleryFilter = (typeof GALLERY_FILTERS)[number];
 
 export const HERO_SLIDES = [
+  // Slide 0 loaded with priority; the rest load lazily behind the carousel
   "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1800&q=80",
   "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=1800&q=80",
   "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1800&q=80",
