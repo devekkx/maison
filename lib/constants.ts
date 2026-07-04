@@ -1,3 +1,4 @@
+/** All GSAP and Lenis duration/delay values in seconds (or ms for HERO_CAROUSEL_MS). */
 export const TIMING = {
   LENIS_DURATION: 0.85,
   HERO_CAROUSEL_MS: 4500,
@@ -24,6 +25,7 @@ export const TIMING = {
   CURSOR_SNAP_DURATION: 0.7,
 } as const;
 
+/** GSAP easing strings. Use EASING.DEFAULT for most transitions. */
 export const EASING = {
   DEFAULT: "power3.out",
   EXPO_OUT: "expo.out",
@@ -34,6 +36,7 @@ export const EASING = {
   NONE: "none",
 } as const;
 
+/** CustomCursor animation lerp factors, angle limits, and scale values. */
 export const CURSOR = {
   RING_LERP: 0.5,
   ICON_LERP: 0.4,
@@ -45,6 +48,7 @@ export const CURSOR = {
   LABEL_OFFSET: 22,
 } as const;
 
+/** CSS/data-attribute selectors used by AnimationsProvider to target DOM nodes. */
 export const ANIM_SELECTORS = {
   INTRO: "[data-intro]",
   INTRO_SPACER: "[data-intro-spacer]",
