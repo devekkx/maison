@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CURSOR } from "@/lib/constants";
 
 function ScissorsSVG() {
@@ -30,7 +30,14 @@ const HOVER_SEL =
   "a, button, .chip, .tile, .svc, .artist, .owner-card, .hero-dots button, input, select, textarea";
 
 export default function CustomCursor() {
-  const isCoarse = typeof window !== "undefined" && matchMedia("(pointer: coarse)").matches;
+  // Start as coarse (renders nothing) so the first client render matches
+  // the server-rendered output; the real check runs post-mount to avoid
+  // a hydration mismatch on touch devices.
+  const [isCoarse, setIsCoarse] = useState(true);
+
+  useEffect(() => {
+    setIsCoarse(matchMedia("(pointer: coarse)").matches);
+  }, []);
 
   if (isCoarse) return null;
 
